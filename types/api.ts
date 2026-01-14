@@ -88,3 +88,43 @@ export interface PostFilters {
     sortBy?: "createdAt" | "updatedAt" | "views" | "publishedAt";
     sortOrder?: "asc" | "desc";
 }
+
+// User types for admin user management
+export interface User {
+    id: string;
+    name: string | null;
+    email: string;
+    image: string | null;
+    role: "ADMIN" | "AUTHOR" | "READER";
+    emailVerified: boolean;
+    createdAt: string;
+    _count: {
+        posts: number;
+        comments: number;
+    };
+}
+
+export interface UserDetail extends User {
+    updatedAt: string;
+    profile?: {
+        bio: string | null;
+        website: string | null;
+    } | null;
+}
+
+export interface UsersResponse {
+    users: User[];
+    pagination: {
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+    };
+}
+
+export interface UserFilters {
+    page?: number;
+    limit?: number;
+    search?: string;
+    role?: "ADMIN" | "AUTHOR" | "READER";
+}
