@@ -1,65 +1,124 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+import { useState } from "react";
+import { Navbar } from "@/components/navbar";
+import { FeaturedPostsCarousel } from "@/components/featured-posts-carousel";
+import { RecentPostsGrid } from "@/components/recent-posts-grid";
+import { SearchBar } from "@/components/search-bar";
+import { TagCloud } from "@/components/tag-cloud";
+import { usePosts } from "@/hooks/use-posts";
+import { useTags } from "@/hooks/use-tags";
+
+export default function HomePage() {
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
+    const [selectedTag, setSelectedTag] = useState<string | undefined>();
+
+    // Fetch featured posts (recent 3 published posts)
+    const { data: featuredData } = usePosts({
+        limit: 3,
+        sortBy: "publishedAt",
+        sortOrder: "desc",
+        status: "PUBLISHED",
+    });
+
+    // Fetch recent posts with filters
+    const { data: postsData, isLoading: postsLoading } = usePosts({
+        page,
+        limit: 9,
+        search: search || undefined,
+        tag: selectedTag,
+        sortBy: "publishedAt",
+        sortOrder: "desc",
+        status: "PUBLISHED",
+    });
+
+    // Fetch tags
+    const { data: tagsData, isLoading: tagsLoading } = useTags();
+
+    const handleSearch = (query: string) => {
+        setSearch(query);
+        setPage(1); // Reset to first page on new search
+    };
+
+    const handleTagClick = (tagSlug: string) => {
+        if (selectedTag === tagSlug) {
+            setSelectedTag(undefined); // Deselect if clicking the same tag
+        } else {
+            setSelectedTag(tagSlug);
+        }
+        setPage(1); // Reset to first page on tag filter
+    };
+
+    const handlePageChange = (newPage: number) => {
+        setPage(newPage);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    return (
+        <div className="min-h-screen bg-background">
+            <Navbar />
+
+            <main className="container mx-auto px-4 py-8">
+                {/* Hero Section with Featured Posts */}
+                {featuredData?.posts && featuredData.posts.length > 0 && (
+                    <section className="mb-12">
+                        <FeaturedPostsCarousel posts={featuredData.posts} />
+                    </section>
+                )}
+
+                {/* Search and Filter Section */}
+                <section className="mb-8 space-y-6">
+                    <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+                        <div className="space-y-6">
+                            <SearchBar onSearch={handleSearch} defaultValue={search} />
+
+                            {/* Active Filters Display */}
+                            {(search || selectedTag) && (
+                                <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                                    <span>Active filters:</span>
+                                    {search && (
+                                        <span className="rounded-full bg-primary/10 px-3 py-1 text-primary">
+                                            Search: {search}
+                                        </span>
+                                    )}
+                                    {selectedTag && (
+                                        <span className="rounded-full bg-primary/10 px-3 py-1 text-primary">
+                                            Tag: {tagsData?.tags.find((t) => t.slug === selectedTag)?.name}
+                                        </span>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="lg:sticky lg:top-24 lg:self-start">
+                            <TagCloud
+                                tags={tagsData?.tags || []}
+                                isLoading={tagsLoading}
+                                selectedTag={selectedTag}
+                                onTagClick={handleTagClick}
+                            />
+                        </div>
+                    </div>
+                </section>
+
+                {/* Recent Posts Grid */}
+                <section>
+                    <RecentPostsGrid
+                        posts={postsData?.posts || []}
+                        isLoading={postsLoading}
+                        pagination={postsData?.pagination}
+                        onPageChange={handlePageChange}
+                    />
+                </section>
+            </main>
+
+            {/* Footer */}
+            <footer className="mt-16 border-t">
+                <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
+                    <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
+                </div>
+            </footer>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }
