@@ -57,8 +57,21 @@ export interface Comment {
     postId: string;
 }
 
+export interface CommentWithPost extends Comment {
+    post: {
+        id: string;
+        title: string;
+        slug: string;
+        status: string;
+    };
+}
+
 export interface CommentsResponse {
     comments: Comment[];
+}
+
+export interface MyCommentsResponse {
+    comments: CommentWithPost[];
 }
 
 export interface TagsResponse {

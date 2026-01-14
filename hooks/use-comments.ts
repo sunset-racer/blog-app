@@ -2,13 +2,14 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api-client";
-import type { Comment, CommentsResponse } from "@/types/api";
+import type { Comment, CommentsResponse, MyCommentsResponse } from "@/types/api";
 
 // Query keys
 export const commentKeys = {
     all: ["comments"] as const,
     lists: () => [...commentKeys.all, "list"] as const,
     list: (postId: string) => [...commentKeys.lists(), postId] as const,
+    myComments: () => [...commentKeys.all, "my-comments"] as const,
 };
 
 // Get comments for a post
@@ -47,6 +48,7 @@ export function useUpdateComment() {
         },
         onSuccess: (_, variables) => {
             queryClient.invalidateQueries({ queryKey: commentKeys.list(variables.postId) });
+            queryClient.invalidateQueries({ queryKey: commentKeys.myComments() });
         },
     });
 }
@@ -61,6 +63,18 @@ export function useDeleteComment() {
         },
         onSuccess: (_, variables) => {
             queryClient.invalidateQueries({ queryKey: commentKeys.list(variables.postId) });
+            queryClient.invalidateQueries({ queryKey: commentKeys.myComments() });
+        },
+    });
+}
+
+// Get all comments by current user
+export function useMyComments() {
+    return useQuery({
+        queryKey: commentKeys.myComments(),
+        queryFn: async () => {
+            const response = await api.get<MyCommentsResponse>("/api/comments/my-comments");
+            return response;
         },
     });
 }
