@@ -2,7 +2,13 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api-client";
-import type { Comment, CommentsResponse, MyCommentsResponse } from "@/types/api";
+import type {
+    Comment,
+    CommentsResponse,
+    MyCommentsResponse,
+    AllCommentsResponse,
+    CommentFilters,
+} from "@/types/api";
 
 // Query keys
 export const commentKeys = {
@@ -10,6 +16,8 @@ export const commentKeys = {
     lists: () => [...commentKeys.all, "list"] as const,
     list: (postId: string) => [...commentKeys.lists(), postId] as const,
     myComments: () => [...commentKeys.all, "my-comments"] as const,
+    allComments: () => [...commentKeys.all, "all-comments"] as const,
+    allCommentsList: (filters: CommentFilters) => [...commentKeys.allComments(), filters] as const,
 };
 
 // Get comments for a post
@@ -74,6 +82,28 @@ export function useMyComments() {
         queryKey: commentKeys.myComments(),
         queryFn: async () => {
             const response = await api.get<MyCommentsResponse>("/api/comments/my-comments");
+            return response;
+        },
+    });
+}
+
+// Get all comments (admin only)
+export function useAllComments(filters: CommentFilters = {}) {
+    const params = new URLSearchParams();
+
+    if (filters.page) params.set("page", filters.page.toString());
+    if (filters.limit) params.set("limit", filters.limit.toString());
+    if (filters.search) params.set("search", filters.search);
+    if (filters.authorId) params.set("authorId", filters.authorId);
+    if (filters.postId) params.set("postId", filters.postId);
+
+    const queryString = params.toString();
+    const url = `/api/comments/all${queryString ? `?${queryString}` : ""}`;
+
+    return useQuery({
+        queryKey: commentKeys.allCommentsList(filters),
+        queryFn: async () => {
+            const response = await api.get<AllCommentsResponse>(url);
             return response;
         },
     });

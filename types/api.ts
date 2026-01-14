@@ -128,3 +128,22 @@ export interface UserFilters {
     search?: string;
     role?: "ADMIN" | "AUTHOR" | "READER";
 }
+
+// Admin comments types
+export interface AllCommentsResponse {
+    comments: CommentWithPost[];
+    pagination: {
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+    };
+}
+
+export interface CommentFilters {
+    page?: number;
+    limit?: number;
+    search?: string;
+    authorId?: string;
+    postId?: string;
+}
