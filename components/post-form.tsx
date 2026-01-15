@@ -63,8 +63,13 @@ export function PostForm({ post, mode }: PostFormProps) {
     const watchedTags = watch("tags");
 
     const isLoading = createPost.isPending || updatePost.isPending;
+    // Can request publish if:
+    // 1. Post is saved (has an ID)
+    // 2. Post status is DRAFT or REJECTED (not already pending or published)
+    // For new posts, after first save they become DRAFT by default
     const canRequestPublish =
-        savedPostId && (post?.status === "DRAFT" || post?.status === "REJECTED");
+        savedPostId &&
+        (!post?.status || post?.status === "DRAFT" || post?.status === "REJECTED");
 
     const handleSaveDraft = async (data: PostFormData) => {
         try {
@@ -219,7 +224,7 @@ export function PostForm({ post, mode }: PostFormProps) {
                             Save Draft
                         </Button>
 
-                        {(mode === "edit" && canRequestPublish) && (
+                        {canRequestPublish && (
                             <Button
                                 type="button"
                                 onClick={openPublishDialog}

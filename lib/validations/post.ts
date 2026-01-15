@@ -19,11 +19,7 @@ export const postFormSchema = z.object({
         .url("Must be a valid URL")
         .optional()
         .or(z.literal("")),
-    tags: z
-        .array(z.string())
-        .max(5, "Maximum 5 tags allowed")
-        .optional()
-        .default([]),
+    tags: z.array(z.string()).max(5, "Maximum 5 tags allowed"),
 });
 
 export type PostFormData = z.infer<typeof postFormSchema>;

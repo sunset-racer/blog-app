@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-type PostStatus = "DRAFT" | "PENDING" | "PUBLISHED" | "REJECTED" | "PENDING_APPROVAL";
+type PostStatus = "DRAFT" | "PENDING_APPROVAL" | "PUBLISHED" | "REJECTED";
 
 interface PostStatusBadgeProps {
     status: PostStatus;
@@ -12,10 +12,6 @@ const statusConfig: Record<PostStatus, { label: string; variant: "default" | "se
     DRAFT: {
         label: "Draft",
         variant: "secondary",
-    },
-    PENDING: {
-        label: "Pending",
-        variant: "outline",
     },
     PENDING_APPROVAL: {
         label: "Pending",

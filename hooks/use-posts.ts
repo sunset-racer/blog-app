@@ -44,7 +44,7 @@ export function usePostById(id: string) {
     return useQuery({
         queryKey: postKeys.detailById(id),
         queryFn: async () => {
-            const response = await api.get<Post>(`/api/posts/${id}`);
+            const response = await api.get<Post>(`/api/posts/by-id/${id}`);
             return response;
         },
         enabled: !!id,

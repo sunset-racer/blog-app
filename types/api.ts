@@ -26,7 +26,7 @@ export interface Post {
     content: string;
     excerpt?: string | null;
     coverImage?: string | null;
-    status: "DRAFT" | "PENDING" | "PUBLISHED" | "REJECTED";
+    status: "DRAFT" | "PENDING_APPROVAL" | "PUBLISHED" | "REJECTED";
     views: number;
     createdAt: string;
     updatedAt: string;
