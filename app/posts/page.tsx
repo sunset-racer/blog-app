@@ -14,7 +14,7 @@ export default function PostsListingPage() {
     const [selectedTag, setSelectedTag] = useState<string | undefined>();
     const [currentSort, setCurrentSort] = useState("latest");
     const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "viewCount" | "publishedAt">(
-        "publishedAt"
+        "publishedAt",
     );
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 

@@ -23,7 +23,7 @@ export default function AdminTagsPage() {
             (tag) =>
                 tag.name.toLowerCase().includes(search.toLowerCase()) ||
                 tag.slug.toLowerCase().includes(search.toLowerCase()) ||
-                tag.description?.toLowerCase().includes(search.toLowerCase())
+                tag.description?.toLowerCase().includes(search.toLowerCase()),
         );
     }, [data?.tags, search]);
 

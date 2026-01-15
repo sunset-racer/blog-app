@@ -190,7 +190,7 @@ export function MyPostsTable({ posts, isLoading, onDeleted }: MyPostsTableProps)
                                             ? null
                                             : flexRender(
                                                   header.column.columnDef.header,
-                                                  header.getContext()
+                                                  header.getContext(),
                                               )}
                                     </TableHead>
                                 ))}

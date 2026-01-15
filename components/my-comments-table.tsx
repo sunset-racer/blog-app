@@ -224,7 +224,7 @@ export function MyCommentsTable({ comments, isLoading, onUpdated }: MyCommentsTa
                                             ? null
                                             : flexRender(
                                                   header.column.columnDef.header,
-                                                  header.getContext()
+                                                  header.getContext(),
                                               )}
                                     </TableHead>
                                 ))}

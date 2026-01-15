@@ -245,7 +245,7 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
                                             ? null
                                             : flexRender(
                                                   header.column.columnDef.header,
-                                                  header.getContext()
+                                                  header.getContext(),
                                               )}
                                     </TableHead>
                                 ))}

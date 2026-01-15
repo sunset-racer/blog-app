@@ -112,7 +112,7 @@ export const toastPromise = <T>(
         loading: string;
         success: string;
         error: string;
-    }
+    },
 ) => {
     return toast.promise(promise, messages);
 };

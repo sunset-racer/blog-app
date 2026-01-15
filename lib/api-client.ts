@@ -8,7 +8,7 @@ export class APIError extends Error {
     constructor(
         public status: number,
         message: string,
-        public data?: any
+        public data?: any,
     ) {
         super(message);
         this.name = "APIError";
@@ -59,7 +59,7 @@ async function request<T>(endpoint: string, options: RequestOptions = {}): Promi
             throw new APIError(
                 response.status,
                 errorData?.error || errorData?.message || "An error occurred",
-                errorData
+                errorData,
             );
         }
 

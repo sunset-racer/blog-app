@@ -226,7 +226,7 @@ export function AdminCommentsTable({ comments, isLoading, onDeleted }: AdminComm
                                             ? null
                                             : flexRender(
                                                   header.column.columnDef.header,
-                                                  header.getContext()
+                                                  header.getContext(),
                                               )}
                                     </TableHead>
                                 ))}

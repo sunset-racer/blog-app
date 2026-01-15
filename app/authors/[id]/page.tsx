@@ -20,7 +20,7 @@ export default function AuthorPage() {
     const [page, setPage] = useState(1);
     const [currentSort, setCurrentSort] = useState("latest");
     const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "viewCount" | "publishedAt">(
-        "publishedAt"
+        "publishedAt",
     );
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 

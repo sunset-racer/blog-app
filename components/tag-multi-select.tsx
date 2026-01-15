@@ -31,7 +31,7 @@ export function TagMultiSelect({
     const existingTags = tagsData?.tags || [];
     const filteredTags = existingTags.filter(
         (tag) =>
-            tag.name.toLowerCase().includes(inputValue.toLowerCase()) && !value.includes(tag.name)
+            tag.name.toLowerCase().includes(inputValue.toLowerCase()) && !value.includes(tag.name),
     );
 
     const canAddMore = value.length < maxTags;
@@ -79,7 +79,7 @@ export function TagMultiSelect({
             <div
                 className={cn(
                     "bg-background flex min-h-10 flex-wrap gap-2 rounded-md border px-3 py-2",
-                    disabled && "cursor-not-allowed opacity-50"
+                    disabled && "cursor-not-allowed opacity-50",
                 )}
                 onClick={() => !disabled && inputRef.current?.focus()}
             >
@@ -130,7 +130,7 @@ export function TagMultiSelect({
                                     className={cn(
                                         "flex w-full items-center justify-between rounded-sm px-2 py-1.5 text-sm outline-none",
                                         "hover:bg-accent hover:text-accent-foreground",
-                                        !canAddMore && "cursor-not-allowed opacity-50"
+                                        !canAddMore && "cursor-not-allowed opacity-50",
                                     )}
                                 >
                                     <span>{tag.name}</span>
@@ -145,7 +145,7 @@ export function TagMultiSelect({
                             {/* Option to create new tag */}
                             {inputValue.trim() &&
                                 !existingTags.some(
-                                    (t) => t.name.toLowerCase() === inputValue.toLowerCase()
+                                    (t) => t.name.toLowerCase() === inputValue.toLowerCase(),
                                 ) &&
                                 !value.includes(inputValue.trim()) && (
                                     <button
@@ -155,7 +155,7 @@ export function TagMultiSelect({
                                         className={cn(
                                             "flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none",
                                             "hover:bg-accent hover:text-accent-foreground",
-                                            !canAddMore && "cursor-not-allowed opacity-50"
+                                            !canAddMore && "cursor-not-allowed opacity-50",
                                         )}
                                     >
                                         <Plus className="h-3 w-3" />
