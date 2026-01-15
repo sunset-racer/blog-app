@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -44,14 +39,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useUpdateUserRole } from "@/hooks/use-users";
 import { formatDistanceToNow } from "@/lib/date-utils";
 import { toast } from "sonner";
-import {
-    MoreHorizontal,
-    Shield,
-    PenTool,
-    User as UserIcon,
-    Loader2,
-    Users,
-} from "lucide-react";
+import { MoreHorizontal, Shield, PenTool, User as UserIcon, Loader2, Users } from "lucide-react";
 import type { User } from "@/types/api";
 
 interface AdminUsersTableProps {
@@ -130,7 +118,7 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
                         </Avatar>
                         <div className="flex flex-col">
                             <span className="font-medium">{user.name || "Unnamed User"}</span>
-                            <span className="text-sm text-muted-foreground">{user.email}</span>
+                            <span className="text-muted-foreground text-sm">{user.email}</span>
                         </div>
                     </div>
                 );
@@ -156,18 +144,14 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
             accessorKey: "_count.posts",
             header: "Posts",
             cell: ({ row }) => (
-                <span className="text-sm font-medium">
-                    {row.original._count?.posts || 0}
-                </span>
+                <span className="text-sm font-medium">{row.original._count?.posts || 0}</span>
             ),
         },
         {
             accessorKey: "_count.comments",
             header: "Comments",
             cell: ({ row }) => (
-                <span className="text-sm font-medium">
-                    {row.original._count?.comments || 0}
-                </span>
+                <span className="text-sm font-medium">{row.original._count?.comments || 0}</span>
             ),
         },
         {
@@ -183,7 +167,7 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
             accessorKey: "createdAt",
             header: "Joined",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">
+                <span className="text-muted-foreground text-sm">
                     {formatDistanceToNow(row.original.createdAt)}
                 </span>
             ),
@@ -238,9 +222,9 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
         return (
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
-                    <Users className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                    <Users className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                     <h3 className="text-lg font-semibold">No users found</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         Try adjusting your search or filters.
                     </p>
                 </div>
@@ -273,10 +257,7 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
                             <TableRow key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
-                                        )}
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
                             </TableRow>
@@ -291,8 +272,8 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
                     <DialogHeader>
                         <DialogTitle>Change User Role</DialogTitle>
                         <DialogDescription>
-                            Change the role for {selectedUser?.name || selectedUser?.email}.
-                            This will update their permissions immediately.
+                            Change the role for {selectedUser?.name || selectedUser?.email}. This
+                            will update their permissions immediately.
                         </DialogDescription>
                     </DialogHeader>
 
@@ -309,8 +290,10 @@ export function AdminUsersTable({ users, isLoading, onRoleChanged }: AdminUsersT
                                 </AvatarFallback>
                             </Avatar>
                             <div>
-                                <p className="font-medium">{selectedUser?.name || "Unnamed User"}</p>
-                                <p className="text-sm text-muted-foreground">
+                                <p className="font-medium">
+                                    {selectedUser?.name || "Unnamed User"}
+                                </p>
+                                <p className="text-muted-foreground text-sm">
                                     {selectedUser?.email}
                                 </p>
                             </div>

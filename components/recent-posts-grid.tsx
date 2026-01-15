@@ -18,7 +18,12 @@ interface RecentPostsGridProps {
     onPageChange?: (page: number) => void;
 }
 
-export function RecentPostsGrid({ posts, isLoading, pagination, onPageChange }: RecentPostsGridProps) {
+export function RecentPostsGrid({
+    posts,
+    isLoading,
+    pagination,
+    onPageChange,
+}: RecentPostsGridProps) {
     if (isLoading) {
         return (
             <div className="space-y-6">
@@ -39,7 +44,9 @@ export function RecentPostsGrid({ posts, isLoading, pagination, onPageChange }: 
                 <div className="flex min-h-[400px] items-center justify-center rounded-lg border border-dashed">
                     <div className="text-center">
                         <h3 className="text-lg font-semibold">No posts found</h3>
-                        <p className="text-sm text-muted-foreground">Check back later for new content</p>
+                        <p className="text-muted-foreground text-sm">
+                            Check back later for new content
+                        </p>
                     </div>
                 </div>
             </div>
@@ -81,7 +88,7 @@ export function RecentPostsGrid({ posts, isLoading, pagination, onPageChange }: 
                                 // Show ellipsis once between groups
                                 if (page === pagination.page - 2 || page === pagination.page + 2) {
                                     return (
-                                        <span key={page} className="px-2 text-muted-foreground">
+                                        <span key={page} className="text-muted-foreground px-2">
                                             ...
                                         </span>
                                     );
@@ -116,9 +123,10 @@ export function RecentPostsGrid({ posts, isLoading, pagination, onPageChange }: 
             )}
 
             {pagination && (
-                <div className="text-center text-sm text-muted-foreground">
+                <div className="text-muted-foreground text-center text-sm">
                     Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
-                    {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} posts
+                    {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
+                    {pagination.total} posts
                 </div>
             )}
         </div>

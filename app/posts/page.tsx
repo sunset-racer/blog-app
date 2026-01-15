@@ -13,7 +13,9 @@ export default function PostsListingPage() {
     const [search, setSearch] = useState("");
     const [selectedTag, setSelectedTag] = useState<string | undefined>();
     const [currentSort, setCurrentSort] = useState("latest");
-    const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "viewCount" | "publishedAt">("publishedAt");
+    const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "viewCount" | "publishedAt">(
+        "publishedAt"
+    );
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
     // Fetch posts with filters
@@ -59,14 +61,14 @@ export default function PostsListingPage() {
     };
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="bg-background min-h-screen">
             <Navbar />
 
             <main className="container mx-auto px-4 py-8">
                 {/* Page Header */}
                 <div className="mb-8">
                     <h1 className="mb-2 text-4xl font-bold tracking-tight">All Posts</h1>
-                    <p className="text-lg text-muted-foreground">
+                    <p className="text-muted-foreground text-lg">
                         {postsData?.pagination.total || 0} posts available
                     </p>
                 </div>
@@ -105,7 +107,7 @@ export default function PostsListingPage() {
 
             {/* Footer */}
             <footer className="mt-16 border-t">
-                <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
+                <div className="text-muted-foreground container mx-auto px-4 py-8 text-center text-sm">
                     <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
                 </div>
             </footer>

@@ -17,14 +17,11 @@ export function useUploadImage() {
             const formData = new FormData();
             formData.append("file", file);
 
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/upload/image`,
-                {
-                    method: "POST",
-                    body: formData,
-                    credentials: "include",
-                }
-            );
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload/image`, {
+                method: "POST",
+                body: formData,
+                credentials: "include",
+            });
 
             if (!response.ok) {
                 const error = await response.json();

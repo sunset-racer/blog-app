@@ -19,26 +19,16 @@ export default function AdminPublishRequestsPage() {
             {/* Page Header */}
             <div>
                 <h1 className="text-3xl font-bold">Publish Requests</h1>
-                <p className="text-muted-foreground">
-                    Review and manage author publish requests
-                </p>
+                <p className="text-muted-foreground">Review and manage author publish requests</p>
             </div>
 
             {/* Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList>
-                    <TabsTrigger value="PENDING">
-                        Pending ({pendingCount})
-                    </TabsTrigger>
-                    <TabsTrigger value="APPROVED">
-                        Approved ({approvedCount})
-                    </TabsTrigger>
-                    <TabsTrigger value="REJECTED">
-                        Rejected ({rejectedCount})
-                    </TabsTrigger>
-                    <TabsTrigger value="all">
-                        All ({requests.length})
-                    </TabsTrigger>
+                    <TabsTrigger value="PENDING">Pending ({pendingCount})</TabsTrigger>
+                    <TabsTrigger value="APPROVED">Approved ({approvedCount})</TabsTrigger>
+                    <TabsTrigger value="REJECTED">Rejected ({rejectedCount})</TabsTrigger>
+                    <TabsTrigger value="all">All ({requests.length})</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="PENDING" className="mt-6">

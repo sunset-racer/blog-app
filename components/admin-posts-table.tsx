@@ -40,14 +40,7 @@ import { PostStatusBadge } from "@/components/post-status-badge";
 import { useDeletePost } from "@/hooks/use-posts";
 import { formatDistanceToNow } from "@/lib/date-utils";
 import { toast } from "sonner";
-import {
-    MoreHorizontal,
-    Pencil,
-    Trash2,
-    ExternalLink,
-    Loader2,
-    FileText,
-} from "lucide-react";
+import { MoreHorizontal, Pencil, Trash2, ExternalLink, Loader2, FileText } from "lucide-react";
 import type { Post } from "@/types/api";
 
 interface AdminPostsTableProps {
@@ -118,8 +111,8 @@ export function AdminPostsTable({
                 const post = row.original;
                 return (
                     <div className="flex flex-col">
-                        <span className="font-medium line-clamp-1">{post.title}</span>
-                        <span className="text-sm text-muted-foreground line-clamp-1">
+                        <span className="line-clamp-1 font-medium">{post.title}</span>
+                        <span className="text-muted-foreground line-clamp-1 text-sm">
                             {post.excerpt || post.content.substring(0, 60) + "..."}
                         </span>
                     </div>
@@ -135,9 +128,7 @@ export function AdminPostsTable({
                     <div className="flex items-center gap-2">
                         <Avatar className="h-6 w-6">
                             <AvatarImage src={author.image || undefined} />
-                            <AvatarFallback className="text-xs">
-                                {author.name[0]}
-                            </AvatarFallback>
+                            <AvatarFallback className="text-xs">{author.name[0]}</AvatarFallback>
                         </Avatar>
                         <span className="text-sm">{author.name}</span>
                     </div>
@@ -153,14 +144,14 @@ export function AdminPostsTable({
             accessorKey: "views",
             header: "Views",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">{row.original.views}</span>
+                <span className="text-muted-foreground text-sm">{row.original.views}</span>
             ),
         },
         {
             accessorKey: "createdAt",
             header: "Created",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">
+                <span className="text-muted-foreground text-sm">
                     {formatDistanceToNow(row.original.createdAt)}
                 </span>
             ),
@@ -236,9 +227,9 @@ export function AdminPostsTable({
         return (
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
-                    <FileText className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                    <FileText className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                     <h3 className="text-lg font-semibold">No posts found</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         No posts match your current filters.
                     </p>
                 </div>
@@ -268,16 +259,10 @@ export function AdminPostsTable({
                     </TableHeader>
                     <TableBody>
                         {table.getRowModel().rows.map((row) => (
-                            <TableRow
-                                key={row.id}
-                                data-state={row.getIsSelected() && "selected"}
-                            >
+                            <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
-                                        )}
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
                             </TableRow>

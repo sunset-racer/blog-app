@@ -44,8 +44,9 @@ export default function EditPostPage({ params }: EditPostPageProps) {
             <div className="flex min-h-[400px] items-center justify-center">
                 <div className="text-center">
                     <h2 className="mb-2 text-xl font-semibold">Post not found</h2>
-                    <p className="mb-4 text-muted-foreground">
-                        The post you're looking for doesn't exist or you don't have permission to edit it.
+                    <p className="text-muted-foreground mb-4">
+                        The post you're looking for doesn't exist or you don't have permission to
+                        edit it.
                     </p>
                     <Button asChild>
                         <Link href="/dashboard/posts">Back to Posts</Link>
@@ -62,7 +63,7 @@ export default function EditPostPage({ params }: EditPostPageProps) {
             <div className="flex min-h-[400px] items-center justify-center">
                 <div className="text-center">
                     <h2 className="mb-2 text-xl font-semibold">Access Denied</h2>
-                    <p className="mb-4 text-muted-foreground">
+                    <p className="text-muted-foreground mb-4">
                         You don't have permission to edit this post.
                     </p>
                     <Button asChild>
@@ -80,7 +81,7 @@ export default function EditPostPage({ params }: EditPostPageProps) {
             <div className="flex min-h-[400px] items-center justify-center">
                 <div className="text-center">
                     <h2 className="mb-2 text-xl font-semibold">Cannot Edit Post</h2>
-                    <p className="mb-4 text-muted-foreground">
+                    <p className="text-muted-foreground mb-4">
                         This post is currently pending approval or published and cannot be edited.
                     </p>
                     <Button asChild>
@@ -105,9 +106,7 @@ export default function EditPostPage({ params }: EditPostPageProps) {
                         <h1 className="text-3xl font-bold">Edit Post</h1>
                         <PostStatusBadge status={post.status} />
                     </div>
-                    <p className="text-muted-foreground">
-                        Make changes to your post
-                    </p>
+                    <p className="text-muted-foreground">Make changes to your post</p>
                 </div>
             </div>
 

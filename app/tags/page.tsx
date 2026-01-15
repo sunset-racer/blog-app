@@ -18,16 +18,14 @@ export default function TagsPage() {
     });
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="bg-background min-h-screen">
             <Navbar />
 
             <main className="container mx-auto px-4 py-8">
                 {/* Page Header */}
                 <div className="mb-8">
                     <h1 className="mb-2 text-4xl font-bold tracking-tight">All Tags</h1>
-                    <p className="text-lg text-muted-foreground">
-                        Browse posts by topic
-                    </p>
+                    <p className="text-muted-foreground text-lg">Browse posts by topic</p>
                 </div>
 
                 {/* Tags Grid */}
@@ -41,7 +39,7 @@ export default function TagsPage() {
                     <div className="flex min-h-[400px] items-center justify-center rounded-lg border border-dashed">
                         <div className="text-center">
                             <h3 className="text-lg font-semibold">No tags available</h3>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-muted-foreground text-sm">
                                 Tags will appear here once posts are published
                             </p>
                         </div>
@@ -51,28 +49,24 @@ export default function TagsPage() {
                         {sortedTags.map((tag) => {
                             const postCount = tag._count?.posts || 0;
                             return (
-                                <Link
-                                    key={tag.id}
-                                    href={`/tags/${tag.slug}`}
-                                    className="group"
-                                >
-                                    <div className="flex h-full flex-col rounded-lg border bg-card p-6 transition-all hover:shadow-lg">
+                                <Link key={tag.id} href={`/tags/${tag.slug}`} className="group">
+                                    <div className="bg-card flex h-full flex-col rounded-lg border p-6 transition-all hover:shadow-lg">
                                         <div className="mb-3 flex items-center gap-3">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
-                                                <TagIcon className="h-5 w-5 text-primary" />
+                                            <div className="bg-primary/10 group-hover:bg-primary/20 flex h-10 w-10 items-center justify-center rounded-lg transition-colors">
+                                                <TagIcon className="text-primary h-5 w-5" />
                                             </div>
-                                            <h3 className="flex-1 text-lg font-semibold transition-colors group-hover:text-primary">
+                                            <h3 className="group-hover:text-primary flex-1 text-lg font-semibold transition-colors">
                                                 {tag.name}
                                             </h3>
                                         </div>
                                         {tag.description && (
-                                            <p className="mb-3 line-clamp-2 text-sm text-muted-foreground">
+                                            <p className="text-muted-foreground mb-3 line-clamp-2 text-sm">
                                                 {tag.description}
                                             </p>
                                         )}
                                         <div className="mt-auto">
                                             <Badge variant="secondary" className="text-xs">
-                                                {postCount} {postCount === 1 ? 'post' : 'posts'}
+                                                {postCount} {postCount === 1 ? "post" : "posts"}
                                             </Badge>
                                         </div>
                                     </div>
@@ -85,7 +79,7 @@ export default function TagsPage() {
 
             {/* Footer */}
             <footer className="mt-16 border-t">
-                <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
+                <div className="text-muted-foreground container mx-auto px-4 py-8 text-center text-sm">
                     <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
                 </div>
             </footer>

@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -37,14 +32,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useDeleteTag } from "@/hooks/use-tags";
 import { formatDistanceToNow } from "@/lib/date-utils";
 import { toast } from "sonner";
-import {
-    MoreHorizontal,
-    Pencil,
-    Trash2,
-    ExternalLink,
-    Loader2,
-    Tags,
-} from "lucide-react";
+import { MoreHorizontal, Pencil, Trash2, ExternalLink, Loader2, Tags } from "lucide-react";
 import type { Tag } from "@/types/api";
 
 interface AdminTagsTableProps {
@@ -92,14 +80,14 @@ export function AdminTagsTable({ tags, isLoading, onEdit, onDeleted }: AdminTags
             accessorKey: "slug",
             header: "Slug",
             cell: ({ row }) => (
-                <code className="text-sm text-muted-foreground">{row.original.slug}</code>
+                <code className="text-muted-foreground text-sm">{row.original.slug}</code>
             ),
         },
         {
             accessorKey: "description",
             header: "Description",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground line-clamp-1">
+                <span className="text-muted-foreground line-clamp-1 text-sm">
                     {row.original.description || "—"}
                 </span>
             ),
@@ -108,16 +96,14 @@ export function AdminTagsTable({ tags, isLoading, onEdit, onDeleted }: AdminTags
             accessorKey: "_count.posts",
             header: "Posts",
             cell: ({ row }) => (
-                <span className="text-sm font-medium">
-                    {row.original._count?.posts || 0}
-                </span>
+                <span className="text-sm font-medium">{row.original._count?.posts || 0}</span>
             ),
         },
         {
             accessorKey: "createdAt",
             header: "Created",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">
+                <span className="text-muted-foreground text-sm">
                     {formatDistanceToNow(row.original.createdAt)}
                 </span>
             ),
@@ -181,9 +167,9 @@ export function AdminTagsTable({ tags, isLoading, onEdit, onDeleted }: AdminTags
         return (
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
-                    <Tags className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                    <Tags className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                     <h3 className="text-lg font-semibold">No tags found</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         Create your first tag to organize content.
                     </p>
                 </div>
@@ -216,10 +202,7 @@ export function AdminTagsTable({ tags, isLoading, onEdit, onDeleted }: AdminTags
                             <TableRow key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
-                                        )}
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
                             </TableRow>

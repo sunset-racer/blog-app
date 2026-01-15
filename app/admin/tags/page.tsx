@@ -50,9 +50,7 @@ export default function AdminTagsPage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="text-3xl font-bold">Tags</h1>
-                    <p className="text-muted-foreground">
-                        Manage tags to organize your content
-                    </p>
+                    <p className="text-muted-foreground">Manage tags to organize your content</p>
                 </div>
                 <Button onClick={handleCreateClick}>
                     <Plus className="mr-2 h-4 w-4" />
@@ -62,7 +60,7 @@ export default function AdminTagsPage() {
 
             {/* Search */}
             <div className="relative max-w-md">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                 <Input
                     placeholder="Search tags..."
                     value={search}
@@ -72,7 +70,7 @@ export default function AdminTagsPage() {
             </div>
 
             {/* Stats */}
-            <div className="text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-sm">
                 {filteredTags.length} tag{filteredTags.length !== 1 ? "s" : ""} found
                 {search && ` for "${search}"`}
             </div>

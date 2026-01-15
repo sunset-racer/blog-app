@@ -10,7 +10,7 @@ interface AuthorHeaderProps {
 
 export function AuthorHeader({ author, postCount = 0 }: AuthorHeaderProps) {
     return (
-        <header className="space-y-6 rounded-lg border bg-card p-8 text-card-foreground">
+        <header className="bg-card text-card-foreground space-y-6 rounded-lg border p-8">
             <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
                 {/* Author Avatar */}
                 <Avatar className="h-24 w-24">
@@ -27,9 +27,11 @@ export function AuthorHeader({ author, postCount = 0 }: AuthorHeaderProps) {
                         <h1 className="text-3xl font-bold tracking-tight">{author.name}</h1>
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="text-muted-foreground flex items-center gap-2 text-sm">
                         <User className="h-4 w-4" />
-                        <span>{postCount} {postCount === 1 ? 'published post' : 'published posts'}</span>
+                        <span>
+                            {postCount} {postCount === 1 ? "published post" : "published posts"}
+                        </span>
                     </div>
                 </div>
             </div>

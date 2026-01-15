@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -38,13 +33,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useDeleteComment } from "@/hooks/use-comments";
 import { formatDistanceToNow } from "@/lib/date-utils";
 import { toast } from "sonner";
-import {
-    MoreHorizontal,
-    Trash2,
-    ExternalLink,
-    Loader2,
-    MessageSquare,
-} from "lucide-react";
+import { MoreHorizontal, Trash2, ExternalLink, Loader2, MessageSquare } from "lucide-react";
 import type { CommentWithPost } from "@/types/api";
 
 interface AdminCommentsTableProps {
@@ -115,7 +104,10 @@ export function AdminCommentsTable({ comments, isLoading, onDeleted }: AdminComm
                 return (
                     <div className="flex items-center gap-2">
                         <Avatar className="h-7 w-7">
-                            <AvatarImage src={author.image || undefined} alt={author.name || "User"} />
+                            <AvatarImage
+                                src={author.image || undefined}
+                                alt={author.name || "User"}
+                            />
                             <AvatarFallback className="text-xs">{initials}</AvatarFallback>
                         </Avatar>
                         <span className="text-sm">{author.name || "Unknown"}</span>
@@ -133,7 +125,7 @@ export function AdminCommentsTable({ comments, isLoading, onDeleted }: AdminComm
                         <Link
                             href={`/posts/${post.slug}`}
                             target="_blank"
-                            className="text-sm font-medium hover:underline line-clamp-1"
+                            className="line-clamp-1 text-sm font-medium hover:underline"
                         >
                             {post.title}
                         </Link>
@@ -151,7 +143,7 @@ export function AdminCommentsTable({ comments, isLoading, onDeleted }: AdminComm
             accessorKey: "createdAt",
             header: "Date",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">
+                <span className="text-muted-foreground text-sm">
                     {formatDistanceToNow(row.original.createdAt)}
                 </span>
             ),
@@ -211,9 +203,9 @@ export function AdminCommentsTable({ comments, isLoading, onDeleted }: AdminComm
         return (
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
-                    <MessageSquare className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                    <MessageSquare className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                     <h3 className="text-lg font-semibold">No comments found</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         Try adjusting your search or filters.
                     </p>
                 </div>
@@ -246,10 +238,7 @@ export function AdminCommentsTable({ comments, isLoading, onDeleted }: AdminComm
                             <TableRow key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
-                                        )}
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
                             </TableRow>
@@ -264,15 +253,17 @@ export function AdminCommentsTable({ comments, isLoading, onDeleted }: AdminComm
                     <DialogHeader>
                         <DialogTitle>Delete Comment</DialogTitle>
                         <DialogDescription>
-                            Are you sure you want to delete this comment? This action cannot be undone.
+                            Are you sure you want to delete this comment? This action cannot be
+                            undone.
                         </DialogDescription>
                     </DialogHeader>
 
                     {commentToDelete && (
-                        <div className="rounded-lg border bg-muted/50 p-4">
+                        <div className="bg-muted/50 rounded-lg border p-4">
                             <p className="text-sm">{commentToDelete.content}</p>
-                            <p className="mt-2 text-xs text-muted-foreground">
-                                By {commentToDelete.author.name || "Unknown"} on &quot;{commentToDelete.post.title}&quot;
+                            <p className="text-muted-foreground mt-2 text-xs">
+                                By {commentToDelete.author.name || "Unknown"} on &quot;
+                                {commentToDelete.post.title}&quot;
                             </p>
                         </div>
                     )}

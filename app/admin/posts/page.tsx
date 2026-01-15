@@ -134,7 +134,7 @@ export default function AdminPostsPage() {
             {/* Pagination */}
             {data && data.pagination.totalPages > 1 && (
                 <div className="flex items-center justify-between">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         Showing {(page - 1) * 20 + 1} to{" "}
                         {Math.min(page * 20, data.pagination.total)} of {data.pagination.total}{" "}
                         posts

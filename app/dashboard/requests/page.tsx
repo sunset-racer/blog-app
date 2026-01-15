@@ -19,26 +19,16 @@ export default function MyPublishRequestsPage() {
             {/* Page Header */}
             <div>
                 <h1 className="text-3xl font-bold">Publish Requests</h1>
-                <p className="text-muted-foreground">
-                    Track the status of your publish requests
-                </p>
+                <p className="text-muted-foreground">Track the status of your publish requests</p>
             </div>
 
             {/* Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList>
-                    <TabsTrigger value="all">
-                        All ({requests.length})
-                    </TabsTrigger>
-                    <TabsTrigger value="PENDING">
-                        Pending ({pendingCount})
-                    </TabsTrigger>
-                    <TabsTrigger value="APPROVED">
-                        Approved ({approvedCount})
-                    </TabsTrigger>
-                    <TabsTrigger value="REJECTED">
-                        Rejected ({rejectedCount})
-                    </TabsTrigger>
+                    <TabsTrigger value="all">All ({requests.length})</TabsTrigger>
+                    <TabsTrigger value="PENDING">Pending ({pendingCount})</TabsTrigger>
+                    <TabsTrigger value="APPROVED">Approved ({approvedCount})</TabsTrigger>
+                    <TabsTrigger value="REJECTED">Rejected ({rejectedCount})</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="all" className="mt-6">

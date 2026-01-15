@@ -31,8 +31,7 @@ export function TagMultiSelect({
     const existingTags = tagsData?.tags || [];
     const filteredTags = existingTags.filter(
         (tag) =>
-            tag.name.toLowerCase().includes(inputValue.toLowerCase()) &&
-            !value.includes(tag.name)
+            tag.name.toLowerCase().includes(inputValue.toLowerCase()) && !value.includes(tag.name)
     );
 
     const canAddMore = value.length < maxTags;
@@ -79,7 +78,7 @@ export function TagMultiSelect({
             <Label>Tags</Label>
             <div
                 className={cn(
-                    "flex min-h-10 flex-wrap gap-2 rounded-md border bg-background px-3 py-2",
+                    "bg-background flex min-h-10 flex-wrap gap-2 rounded-md border px-3 py-2",
                     disabled && "cursor-not-allowed opacity-50"
                 )}
                 onClick={() => !disabled && inputRef.current?.focus()}
@@ -94,7 +93,7 @@ export function TagMultiSelect({
                                 handleRemove(tag);
                             }}
                             disabled={disabled}
-                            className="ml-1 rounded-full outline-none hover:bg-muted-foreground/20"
+                            className="hover:bg-muted-foreground/20 ml-1 rounded-full outline-none"
                         >
                             <X className="h-3 w-3" />
                         </button>
@@ -120,7 +119,7 @@ export function TagMultiSelect({
             {/* Dropdown */}
             {open && (filteredTags.length > 0 || inputValue.trim()) && (
                 <div className="relative">
-                    <div className="absolute z-10 w-full rounded-md border bg-popover shadow-md">
+                    <div className="bg-popover absolute z-10 w-full rounded-md border shadow-md">
                         <div className="max-h-[200px] overflow-y-auto p-1">
                             {filteredTags.map((tag) => (
                                 <button
@@ -136,7 +135,7 @@ export function TagMultiSelect({
                                 >
                                     <span>{tag.name}</span>
                                     {tag._count?.posts !== undefined && (
-                                        <span className="text-xs text-muted-foreground">
+                                        <span className="text-muted-foreground text-xs">
                                             {tag._count.posts} posts
                                         </span>
                                     )}
@@ -168,7 +167,7 @@ export function TagMultiSelect({
                 </div>
             )}
 
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
                 {value.length}/{maxTags} tags selected. Press Enter to add a new tag.
             </p>
         </div>

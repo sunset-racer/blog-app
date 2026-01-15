@@ -11,10 +11,10 @@ export function TagHeader({ tag, postCount }: TagHeaderProps) {
     const count = postCount ?? tag._count?.posts ?? 0;
 
     return (
-        <header className="space-y-4 rounded-lg border bg-card p-8 text-card-foreground">
+        <header className="bg-card text-card-foreground space-y-4 rounded-lg border p-8">
             <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <TagIcon className="h-6 w-6 text-primary" />
+                <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-lg">
+                    <TagIcon className="text-primary h-6 w-6" />
                 </div>
                 <div>
                     <Badge variant="secondary" className="mb-2">
@@ -24,12 +24,12 @@ export function TagHeader({ tag, postCount }: TagHeaderProps) {
                 </div>
             </div>
 
-            {tag.description && (
-                <p className="text-lg text-muted-foreground">{tag.description}</p>
-            )}
+            {tag.description && <p className="text-muted-foreground text-lg">{tag.description}</p>}
 
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span>{count} {count === 1 ? 'post' : 'posts'}</span>
+            <div className="text-muted-foreground flex items-center gap-2 text-sm">
+                <span>
+                    {count} {count === 1 ? "post" : "posts"}
+                </span>
             </div>
         </header>
     );

@@ -18,7 +18,7 @@ export function PostHeader({ post }: PostHeaderProps) {
         <header className="space-y-6">
             {/* Cover Image */}
             {post.coverImage && (
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+                <div className="bg-muted relative aspect-video w-full overflow-hidden rounded-lg">
                     <img
                         src={post.coverImage}
                         alt={post.title}
@@ -31,7 +31,7 @@ export function PostHeader({ post }: PostHeaderProps) {
             <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                     <Link key={tag.id} href={`/tags/${tag.slug}`}>
-                        <Badge variant="secondary" className="cursor-pointer hover:bg-secondary/80">
+                        <Badge variant="secondary" className="hover:bg-secondary/80 cursor-pointer">
                             {tag.name}
                         </Badge>
                     </Link>
@@ -39,31 +39,28 @@ export function PostHeader({ post }: PostHeaderProps) {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-                {post.title}
-            </h1>
+            <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">{post.title}</h1>
 
             {/* Excerpt */}
-            {post.excerpt && (
-                <p className="text-xl text-muted-foreground">
-                    {post.excerpt}
-                </p>
-            )}
+            {post.excerpt && <p className="text-muted-foreground text-xl">{post.excerpt}</p>}
 
             {/* Author and Meta Info */}
             <div className="flex flex-wrap items-center gap-4 border-y py-4">
-                <Link href={`/authors/${post.author.id}`} className="flex items-center gap-3 transition-opacity hover:opacity-80">
+                <Link
+                    href={`/authors/${post.author.id}`}
+                    className="flex items-center gap-3 transition-opacity hover:opacity-80"
+                >
                     <Avatar className="h-12 w-12">
                         <AvatarImage src={post.author.image || undefined} alt={post.author.name} />
                         <AvatarFallback className="text-lg">{post.author.name[0]}</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col">
                         <span className="font-semibold">{post.author.name}</span>
-                        <span className="text-sm text-muted-foreground">Author</span>
+                        <span className="text-muted-foreground text-sm">Author</span>
                     </div>
                 </Link>
 
-                <div className="ml-auto flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                <div className="text-muted-foreground ml-auto flex flex-wrap items-center gap-4 text-sm">
                     <div className="flex items-center gap-1.5">
                         <Calendar className="h-4 w-4" />
                         <span>{formatDate(post.publishedAt || post.createdAt)}</span>

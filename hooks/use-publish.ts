@@ -55,7 +55,9 @@ export function usePublishRequests(status?: string) {
         queryKey: publishKeys.adminRequests(status),
         queryFn: async () => {
             const params = status ? { status } : {};
-            const response = await api.get<PublishRequestsResponse>("/api/publish/requests", { params });
+            const response = await api.get<PublishRequestsResponse>("/api/publish/requests", {
+                params,
+            });
             return response;
         },
     });
@@ -67,7 +69,9 @@ export function useRequestPublish() {
 
     return useMutation({
         mutationFn: async ({ postId, message }: { postId: string; message?: string }) => {
-            return await api.post<PublishRequest>(`/api/publish/posts/${postId}/request`, { message });
+            return await api.post<PublishRequest>(`/api/publish/posts/${postId}/request`, {
+                message,
+            });
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: publishKeys.myRequests() });
@@ -99,7 +103,9 @@ export function useApprovePublishRequest() {
 
     return useMutation({
         mutationFn: async ({ requestId, message }: { requestId: string; message?: string }) => {
-            return await api.post<PublishRequest>(`/api/publish/requests/${requestId}/approve`, { message });
+            return await api.post<PublishRequest>(`/api/publish/requests/${requestId}/approve`, {
+                message,
+            });
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: publishKeys.all });
@@ -114,7 +120,9 @@ export function useRejectPublishRequest() {
 
     return useMutation({
         mutationFn: async ({ requestId, message }: { requestId: string; message?: string }) => {
-            return await api.post<PublishRequest>(`/api/publish/requests/${requestId}/reject`, { message });
+            return await api.post<PublishRequest>(`/api/publish/requests/${requestId}/reject`, {
+                message,
+            });
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: publishKeys.all });

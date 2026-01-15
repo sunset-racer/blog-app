@@ -47,13 +47,23 @@ export function FeaturedPostsCarousel({ posts }: FeaturedPostsCarouselProps) {
             <div className="mb-6 flex items-center justify-between">
                 <div>
                     <h2 className="text-3xl font-bold tracking-tight">Featured Posts</h2>
-                    <p className="mt-1 text-muted-foreground">Handpicked articles for you</p>
+                    <p className="text-muted-foreground mt-1">Handpicked articles for you</p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline" size="icon" onClick={prevSlide} aria-label="Previous post">
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={prevSlide}
+                        aria-label="Previous post"
+                    >
                         <ChevronLeft className="h-4 w-4" />
                     </Button>
-                    <Button variant="outline" size="icon" onClick={nextSlide} aria-label="Next post">
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={nextSlide}
+                        aria-label="Next post"
+                    >
                         <ChevronRight className="h-4 w-4" />
                     </Button>
                 </div>
@@ -67,7 +77,7 @@ export function FeaturedPostsCarousel({ posts }: FeaturedPostsCarouselProps) {
                     {posts.map((post) => (
                         <div key={post.id} className="w-full flex-shrink-0">
                             <Link href={`/posts/${post.slug}`} className="group block">
-                                <div className="relative aspect-[21/9] overflow-hidden rounded-xl bg-muted">
+                                <div className="bg-muted relative aspect-[21/9] overflow-hidden rounded-xl">
                                     {post.coverImage ? (
                                         <Image
                                             src={post.coverImage}
@@ -77,7 +87,7 @@ export function FeaturedPostsCarousel({ posts }: FeaturedPostsCarouselProps) {
                                             priority
                                         />
                                     ) : (
-                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5" />
+                                        <div className="from-primary/20 to-primary/5 absolute inset-0 bg-gradient-to-br" />
                                     )}
                                     {/* Gradient overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
@@ -159,7 +169,9 @@ export function FeaturedPostsCarousel({ posts }: FeaturedPostsCarouselProps) {
                         key={index}
                         onClick={() => setCurrentIndex(index)}
                         className={`h-2 rounded-full transition-all duration-300 ${
-                            index === currentIndex ? "w-8 bg-primary" : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                            index === currentIndex
+                                ? "bg-primary w-8"
+                                : "bg-muted-foreground/30 hover:bg-muted-foreground/50 w-2"
                         }`}
                         aria-label={`Go to slide ${index + 1}`}
                     />

@@ -68,8 +68,7 @@ export function PostForm({ post, mode }: PostFormProps) {
     // 2. Post status is DRAFT or REJECTED (not already pending or published)
     // For new posts, after first save they become DRAFT by default
     const canRequestPublish =
-        savedPostId &&
-        (!post?.status || post?.status === "DRAFT" || post?.status === "REJECTED");
+        savedPostId && (!post?.status || post?.status === "DRAFT" || post?.status === "REJECTED");
 
     const handleSaveDraft = async (data: PostFormData) => {
         try {
@@ -156,7 +155,7 @@ export function PostForm({ post, mode }: PostFormProps) {
                         disabled={isLoading}
                     />
                     {errors.title && (
-                        <p className="text-sm text-destructive">{errors.title.message}</p>
+                        <p className="text-destructive text-sm">{errors.title.message}</p>
                     )}
                 </div>
 
@@ -171,7 +170,7 @@ export function PostForm({ post, mode }: PostFormProps) {
                         disabled={isLoading}
                     />
                     {errors.excerpt && (
-                        <p className="text-sm text-destructive">{errors.excerpt.message}</p>
+                        <p className="text-destructive text-sm">{errors.excerpt.message}</p>
                     )}
                 </div>
 
@@ -182,7 +181,7 @@ export function PostForm({ post, mode }: PostFormProps) {
                     disabled={isLoading}
                 />
                 {errors.coverImage && (
-                    <p className="text-sm text-destructive">{errors.coverImage.message}</p>
+                    <p className="text-destructive text-sm">{errors.coverImage.message}</p>
                 )}
 
                 {/* Tags */}
@@ -191,9 +190,7 @@ export function PostForm({ post, mode }: PostFormProps) {
                     onChange={(tags) => setValue("tags", tags, { shouldDirty: true })}
                     disabled={isLoading}
                 />
-                {errors.tags && (
-                    <p className="text-sm text-destructive">{errors.tags.message}</p>
-                )}
+                {errors.tags && <p className="text-destructive text-sm">{errors.tags.message}</p>}
 
                 {/* Content Editor */}
                 <MarkdownEditor
@@ -271,10 +268,7 @@ export function PostForm({ post, mode }: PostFormProps) {
                         >
                             Cancel
                         </Button>
-                        <Button
-                            onClick={handleRequestPublish}
-                            disabled={requestPublish.isPending}
-                        >
+                        <Button onClick={handleRequestPublish} disabled={requestPublish.isPending}>
                             {requestPublish.isPending ? (
                                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                             ) : (

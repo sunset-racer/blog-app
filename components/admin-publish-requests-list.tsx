@@ -10,9 +10,7 @@ interface AdminPublishRequestsListProps {
 }
 
 export function AdminPublishRequestsList({ filter = "all" }: AdminPublishRequestsListProps) {
-    const { data, isLoading, refetch } = usePublishRequests(
-        filter === "all" ? undefined : filter
-    );
+    const { data, isLoading, refetch } = usePublishRequests(filter === "all" ? undefined : filter);
 
     if (isLoading) {
         return (
@@ -30,9 +28,9 @@ export function AdminPublishRequestsList({ filter = "all" }: AdminPublishRequest
         return (
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
-                    <Clock className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                    <Clock className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                     <h3 className="text-lg font-semibold">No publish requests</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         {filter === "all"
                             ? "There are no publish requests yet."
                             : `No ${filter.toLowerCase()} requests found.`}

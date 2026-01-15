@@ -51,7 +51,15 @@ export function useUpdateComment() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async ({ id, content, postId }: { id: string; content: string; postId: string }) => {
+        mutationFn: async ({
+            id,
+            content,
+            postId,
+        }: {
+            id: string;
+            content: string;
+            postId: string;
+        }) => {
             return await api.put<Comment>(`/api/comments/${id}`, { content });
         },
         onSuccess: (_, variables) => {

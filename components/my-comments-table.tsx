@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -30,14 +25,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useUpdateComment, useDeleteComment } from "@/hooks/use-comments";
 import { formatDistanceToNow } from "@/lib/date-utils";
 import { toast } from "sonner";
-import {
-    MoreHorizontal,
-    Pencil,
-    Trash2,
-    ExternalLink,
-    Loader2,
-    MessageSquare,
-} from "lucide-react";
+import { MoreHorizontal, Pencil, Trash2, ExternalLink, Loader2, MessageSquare } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -113,9 +101,7 @@ export function MyCommentsTable({ comments, isLoading, onUpdated }: MyCommentsTa
             accessorKey: "content",
             header: "Comment",
             cell: ({ row }) => (
-                <p className="line-clamp-2 max-w-md text-sm">
-                    {row.original.content}
-                </p>
+                <p className="line-clamp-2 max-w-md text-sm">{row.original.content}</p>
             ),
         },
         {
@@ -134,9 +120,7 @@ export function MyCommentsTable({ comments, isLoading, onUpdated }: MyCommentsTa
                                 {post.title}
                             </Link>
                         ) : (
-                            <span className="text-sm text-muted-foreground">
-                                {post.title}
-                            </span>
+                            <span className="text-muted-foreground text-sm">{post.title}</span>
                         )}
                     </div>
                 );
@@ -146,7 +130,7 @@ export function MyCommentsTable({ comments, isLoading, onUpdated }: MyCommentsTa
             accessorKey: "createdAt",
             header: "Date",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">
+                <span className="text-muted-foreground text-sm">
                     {formatDistanceToNow(row.original.createdAt)}
                 </span>
             ),
@@ -214,9 +198,9 @@ export function MyCommentsTable({ comments, isLoading, onUpdated }: MyCommentsTa
         return (
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
-                    <MessageSquare className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                    <MessageSquare className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                     <h3 className="text-lg font-semibold">No comments yet</h3>
-                    <p className="mb-4 text-sm text-muted-foreground">
+                    <p className="text-muted-foreground mb-4 text-sm">
                         You haven't made any comments on posts
                     </p>
                     <Button asChild>
@@ -252,10 +236,7 @@ export function MyCommentsTable({ comments, isLoading, onUpdated }: MyCommentsTa
                             <TableRow key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
-                                        )}
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
                             </TableRow>
@@ -308,7 +289,8 @@ export function MyCommentsTable({ comments, isLoading, onUpdated }: MyCommentsTa
                     <DialogHeader>
                         <DialogTitle>Delete Comment</DialogTitle>
                         <DialogDescription>
-                            Are you sure you want to delete this comment? This action cannot be undone.
+                            Are you sure you want to delete this comment? This action cannot be
+                            undone.
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>

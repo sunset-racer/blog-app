@@ -56,7 +56,7 @@ export function AdminSidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="flex h-full w-64 flex-col border-r bg-muted/30">
+        <aside className="bg-muted/30 flex h-full w-64 flex-col border-r">
             {/* Header */}
             <div className="flex h-16 items-center border-b px-6">
                 <h2 className="text-lg font-semibold">Admin Panel</h2>
@@ -92,7 +92,7 @@ export function AdminSidebar() {
             <div className="border-t p-4">
                 <Link
                     href="/dashboard"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+                    className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm"
                 >
                     <ArrowLeft className="h-4 w-4" />
                     Back to Dashboard

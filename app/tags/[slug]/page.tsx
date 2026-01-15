@@ -20,7 +20,9 @@ export default function TagPage() {
 
     const [page, setPage] = useState(1);
     const [currentSort, setCurrentSort] = useState("latest");
-    const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "viewCount" | "publishedAt">("publishedAt");
+    const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "viewCount" | "publishedAt">(
+        "publishedAt"
+    );
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
     // Fetch tag info
@@ -50,7 +52,7 @@ export default function TagPage() {
 
     if (tagLoading) {
         return (
-            <div className="min-h-screen bg-background">
+            <div className="bg-background min-h-screen">
                 <Navbar />
                 <main className="container mx-auto max-w-6xl px-4 py-8">
                     <Skeleton className="mb-4 h-10 w-32" />
@@ -67,12 +69,12 @@ export default function TagPage() {
 
     if (tagError || !tag) {
         return (
-            <div className="min-h-screen bg-background">
+            <div className="bg-background min-h-screen">
                 <Navbar />
                 <main className="container mx-auto max-w-6xl px-4 py-8">
                     <div className="flex min-h-[400px] flex-col items-center justify-center text-center">
                         <h1 className="mb-4 text-3xl font-bold">Tag Not Found</h1>
-                        <p className="mb-6 text-muted-foreground">
+                        <p className="text-muted-foreground mb-6">
                             The tag you're looking for doesn't exist or has been removed.
                         </p>
                         <Button asChild>
@@ -88,17 +90,12 @@ export default function TagPage() {
     }
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="bg-background min-h-screen">
             <Navbar />
 
             <main className="container mx-auto max-w-6xl px-4 py-8">
                 {/* Back Button */}
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    className="mb-6"
-                    onClick={() => router.back()}
-                >
+                <Button variant="ghost" size="sm" className="mb-6" onClick={() => router.back()}>
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back
                 </Button>
@@ -126,7 +123,7 @@ export default function TagPage() {
 
             {/* Footer */}
             <footer className="mt-16 border-t">
-                <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
+                <div className="text-muted-foreground container mx-auto px-4 py-8 text-center text-sm">
                     <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
                 </div>
             </footer>

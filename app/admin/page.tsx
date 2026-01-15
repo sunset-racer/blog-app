@@ -33,9 +33,7 @@ export default function AdminPage() {
             {/* Page Header */}
             <div>
                 <h1 className="text-3xl font-bold">Admin Overview</h1>
-                <p className="text-muted-foreground">
-                    Manage your blog platform
-                </p>
+                <p className="text-muted-foreground">Manage your blog platform</p>
             </div>
 
             {/* Alert for Pending Requests */}
@@ -44,9 +42,10 @@ export default function AdminPage() {
                     <AlertCircle className="h-5 w-5 text-yellow-600" />
                     <div className="flex-1">
                         <p className="font-medium">
-                            {pendingRequests.length} pending publish request{pendingRequests.length > 1 ? "s" : ""}
+                            {pendingRequests.length} pending publish request
+                            {pendingRequests.length > 1 ? "s" : ""}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                             Authors are waiting for approval
                         </p>
                     </div>
@@ -61,7 +60,7 @@ export default function AdminPage() {
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">Total Posts</CardTitle>
-                        <FileText className="h-4 w-4 text-muted-foreground" />
+                        <FileText className="text-muted-foreground h-4 w-4" />
                     </CardHeader>
                     <CardContent>
                         {isLoading ? (
@@ -91,15 +90,13 @@ export default function AdminPage() {
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">Total Tags</CardTitle>
-                        <Tags className="h-4 w-4 text-muted-foreground" />
+                        <Tags className="text-muted-foreground h-4 w-4" />
                     </CardHeader>
                     <CardContent>
                         {isLoading ? (
                             <Skeleton className="h-8 w-16" />
                         ) : (
-                            <div className="text-2xl font-bold">
-                                {tagsData?.tags.length || 0}
-                            </div>
+                            <div className="text-2xl font-bold">{tagsData?.tags.length || 0}</div>
                         )}
                     </CardContent>
                 </Card>
@@ -127,9 +124,7 @@ export default function AdminPage() {
                             <Clock className="h-5 w-5" />
                             Publish Requests
                         </CardTitle>
-                        <CardDescription>
-                            Review and approve author submissions
-                        </CardDescription>
+                        <CardDescription>Review and approve author submissions</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Button variant="outline" className="w-full" asChild>
@@ -144,9 +139,7 @@ export default function AdminPage() {
                             <FileText className="h-5 w-5" />
                             All Posts
                         </CardTitle>
-                        <CardDescription>
-                            View and manage all blog posts
-                        </CardDescription>
+                        <CardDescription>View and manage all blog posts</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Button variant="outline" className="w-full" asChild>
@@ -161,9 +154,7 @@ export default function AdminPage() {
                             <Tags className="h-5 w-5" />
                             Tags
                         </CardTitle>
-                        <CardDescription>
-                            Create and manage content tags
-                        </CardDescription>
+                        <CardDescription>Create and manage content tags</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Button variant="outline" className="w-full" asChild>
@@ -178,9 +169,7 @@ export default function AdminPage() {
                             <Users className="h-5 w-5" />
                             Users
                         </CardTitle>
-                        <CardDescription>
-                            View registered users
-                        </CardDescription>
+                        <CardDescription>View registered users</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Button variant="outline" className="w-full" asChild>
@@ -195,9 +184,7 @@ export default function AdminPage() {
                             <MessageSquare className="h-5 w-5" />
                             Comments
                         </CardTitle>
-                        <CardDescription>
-                            Moderate user comments
-                        </CardDescription>
+                        <CardDescription>Moderate user comments</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Button variant="outline" className="w-full" asChild>

@@ -21,7 +21,7 @@ export default function AdminUsersLoading() {
 
             {/* Table */}
             <div className="rounded-lg border">
-                <div className="border-b bg-muted/50 p-4">
+                <div className="bg-muted/50 border-b p-4">
                     <div className="grid grid-cols-7 gap-4">
                         <Skeleton className="h-4 w-12" />
                         <Skeleton className="h-4 w-12" />

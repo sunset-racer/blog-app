@@ -22,10 +22,7 @@ import { Loader2 } from "lucide-react";
 import type { Tag } from "@/types/api";
 
 const tagFormSchema = z.object({
-    name: z
-        .string()
-        .min(1, "Name is required")
-        .max(50, "Name must be less than 50 characters"),
+    name: z.string().min(1, "Name is required").max(50, "Name must be less than 50 characters"),
     description: z
         .string()
         .max(200, "Description must be less than 200 characters")
@@ -119,7 +116,7 @@ export function TagFormDialog({ open, onOpenChange, tag, onSuccess }: TagFormDia
                             disabled={isLoading}
                         />
                         {errors.name && (
-                            <p className="text-sm text-destructive">{errors.name.message}</p>
+                            <p className="text-destructive text-sm">{errors.name.message}</p>
                         )}
                     </div>
 
@@ -133,7 +130,7 @@ export function TagFormDialog({ open, onOpenChange, tag, onSuccess }: TagFormDia
                             disabled={isLoading}
                         />
                         {errors.description && (
-                            <p className="text-sm text-destructive">{errors.description.message}</p>
+                            <p className="text-destructive text-sm">{errors.description.message}</p>
                         )}
                     </div>
 

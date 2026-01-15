@@ -58,7 +58,9 @@ export function TagCloud({ tags, isLoading, selectedTag, onTagClick }: TagCloudP
                                 >
                                     {tag.name}
                                     {postCount > 0 && (
-                                        <span className="ml-1 text-xs opacity-70">({postCount})</span>
+                                        <span className="ml-1 text-xs opacity-70">
+                                            ({postCount})
+                                        </span>
                                     )}
                                 </Badge>
                             </button>
@@ -67,9 +69,14 @@ export function TagCloud({ tags, isLoading, selectedTag, onTagClick }: TagCloudP
 
                     return (
                         <Link key={tag.id} href={`/tags/${tag.slug}`}>
-                            <Badge variant="secondary" className="cursor-pointer transition-all hover:scale-105">
+                            <Badge
+                                variant="secondary"
+                                className="cursor-pointer transition-all hover:scale-105"
+                            >
                                 {tag.name}
-                                {postCount > 0 && <span className="ml-1 text-xs opacity-70">({postCount})</span>}
+                                {postCount > 0 && (
+                                    <span className="ml-1 text-xs opacity-70">({postCount})</span>
+                                )}
                             </Badge>
                         </Link>
                     );

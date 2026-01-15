@@ -41,11 +41,41 @@ type MarkdownAction = {
 const markdownActions: MarkdownAction[] = [
     { icon: <Bold className="h-4 w-4" />, label: "Bold", prefix: "**", suffix: "**" },
     { icon: <Italic className="h-4 w-4" />, label: "Italic", prefix: "_", suffix: "_" },
-    { icon: <Heading1 className="h-4 w-4" />, label: "Heading 1", prefix: "# ", suffix: "", block: true },
-    { icon: <Heading2 className="h-4 w-4" />, label: "Heading 2", prefix: "## ", suffix: "", block: true },
-    { icon: <Heading3 className="h-4 w-4" />, label: "Heading 3", prefix: "### ", suffix: "", block: true },
-    { icon: <List className="h-4 w-4" />, label: "Bullet List", prefix: "- ", suffix: "", block: true },
-    { icon: <ListOrdered className="h-4 w-4" />, label: "Numbered List", prefix: "1. ", suffix: "", block: true },
+    {
+        icon: <Heading1 className="h-4 w-4" />,
+        label: "Heading 1",
+        prefix: "# ",
+        suffix: "",
+        block: true,
+    },
+    {
+        icon: <Heading2 className="h-4 w-4" />,
+        label: "Heading 2",
+        prefix: "## ",
+        suffix: "",
+        block: true,
+    },
+    {
+        icon: <Heading3 className="h-4 w-4" />,
+        label: "Heading 3",
+        prefix: "### ",
+        suffix: "",
+        block: true,
+    },
+    {
+        icon: <List className="h-4 w-4" />,
+        label: "Bullet List",
+        prefix: "- ",
+        suffix: "",
+        block: true,
+    },
+    {
+        icon: <ListOrdered className="h-4 w-4" />,
+        label: "Numbered List",
+        prefix: "1. ",
+        suffix: "",
+        block: true,
+    },
     { icon: <Code className="h-4 w-4" />, label: "Code", prefix: "`", suffix: "`" },
     { icon: <Quote className="h-4 w-4" />, label: "Quote", prefix: "> ", suffix: "", block: true },
     { icon: <Link className="h-4 w-4" />, label: "Link", prefix: "[", suffix: "](url)" },
@@ -77,7 +107,8 @@ export function MarkdownEditor({ value, onChange, disabled, error }: MarkdownEdi
                 selectedText +
                 action.suffix +
                 value.substring(end);
-            cursorPosition = start + 1 + action.prefix.length + selectedText.length + action.suffix.length;
+            cursorPosition =
+                start + 1 + action.prefix.length + selectedText.length + action.suffix.length;
         } else {
             newText =
                 value.substring(0, start) +
@@ -85,7 +116,8 @@ export function MarkdownEditor({ value, onChange, disabled, error }: MarkdownEdi
                 selectedText +
                 action.suffix +
                 value.substring(end);
-            cursorPosition = start + action.prefix.length + selectedText.length + action.suffix.length;
+            cursorPosition =
+                start + action.prefix.length + selectedText.length + action.suffix.length;
         }
 
         onChange(newText);
@@ -148,7 +180,7 @@ export function MarkdownEditor({ value, onChange, disabled, error }: MarkdownEdi
 
                 <TabsContent value="write" className="mt-2 space-y-2">
                     {/* Toolbar */}
-                    <div className="flex flex-wrap gap-1 rounded-md border bg-muted/50 p-1">
+                    <div className="bg-muted/50 flex flex-wrap gap-1 rounded-md border p-1">
                         {markdownActions.map((action) => (
                             <Button
                                 key={action.label}
@@ -163,7 +195,7 @@ export function MarkdownEditor({ value, onChange, disabled, error }: MarkdownEdi
                                 {action.icon}
                             </Button>
                         ))}
-                        <div className="mx-1 h-8 w-px bg-border" />
+                        <div className="bg-border mx-1 h-8 w-px" />
                         <Button
                             type="button"
                             variant="ghost"
@@ -200,7 +232,7 @@ export function MarkdownEditor({ value, onChange, disabled, error }: MarkdownEdi
                 </TabsContent>
 
                 <TabsContent value="preview" className="mt-2">
-                    <div className="min-h-[400px] rounded-md border bg-background p-4">
+                    <div className="bg-background min-h-[400px] rounded-md border p-4">
                         {value ? (
                             <div className="prose prose-sm dark:prose-invert max-w-none">
                                 <ReactMarkdown>{value}</ReactMarkdown>
@@ -212,7 +244,7 @@ export function MarkdownEditor({ value, onChange, disabled, error }: MarkdownEdi
                 </TabsContent>
             </Tabs>
 
-            {error && <p className="text-sm text-destructive">{error}</p>}
+            {error && <p className="text-destructive text-sm">{error}</p>}
         </div>
     );
 }

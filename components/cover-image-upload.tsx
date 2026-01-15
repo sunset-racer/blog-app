@@ -79,17 +79,12 @@ export function CoverImageUpload({ value, onChange, disabled }: CoverImageUpload
 
             {value ? (
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                    <Image
-                        src={value}
-                        alt="Cover image preview"
-                        fill
-                        className="object-cover"
-                    />
+                    <Image src={value} alt="Cover image preview" fill className="object-cover" />
                     <Button
                         type="button"
                         variant="destructive"
                         size="icon"
-                        className="absolute right-2 top-2"
+                        className="absolute top-2 right-2"
                         onClick={handleRemove}
                         disabled={disabled}
                     >
@@ -98,11 +93,7 @@ export function CoverImageUpload({ value, onChange, disabled }: CoverImageUpload
                 </div>
             ) : (
                 <div
-                    className={`
-                        flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors
-                        ${isDragging ? "border-primary bg-primary/5" : "border-muted-foreground/25"}
-                        ${disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer hover:border-primary"}
-                    `}
+                    className={`flex flex-col items-center justify-center rounded-lg border-2 border-dashed p-8 transition-colors ${isDragging ? "border-primary bg-primary/5" : "border-muted-foreground/25"} ${disabled ? "cursor-not-allowed opacity-50" : "hover:border-primary cursor-pointer"} `}
                     onDrop={handleDrop}
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
@@ -110,16 +101,16 @@ export function CoverImageUpload({ value, onChange, disabled }: CoverImageUpload
                 >
                     {uploadImage.isPending ? (
                         <>
-                            <Loader2 className="mb-2 h-8 w-8 animate-spin text-muted-foreground" />
-                            <p className="text-sm text-muted-foreground">Uploading...</p>
+                            <Loader2 className="text-muted-foreground mb-2 h-8 w-8 animate-spin" />
+                            <p className="text-muted-foreground text-sm">Uploading...</p>
                         </>
                     ) : (
                         <>
-                            <ImageIcon className="mb-2 h-8 w-8 text-muted-foreground" />
+                            <ImageIcon className="text-muted-foreground mb-2 h-8 w-8" />
                             <p className="mb-1 text-sm font-medium">
                                 Drop an image here or click to upload
                             </p>
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-muted-foreground text-xs">
                                 PNG, JPG, WebP or GIF (max 5MB)
                             </p>
                         </>

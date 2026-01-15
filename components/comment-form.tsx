@@ -11,7 +11,10 @@ import { useCreateComment } from "@/hooks/use-comments";
 import { toast } from "sonner";
 
 const commentSchema = z.object({
-    content: z.string().min(1, "Comment cannot be empty").max(1000, "Comment is too long (max 1000 characters)"),
+    content: z
+        .string()
+        .min(1, "Comment cannot be empty")
+        .max(1000, "Comment is too long (max 1000 characters)"),
 });
 
 type CommentFormData = z.infer<typeof commentSchema>;
@@ -65,7 +68,7 @@ export function CommentForm({ postId, onSuccess }: CommentFormProps) {
                     {...register("content")}
                 />
                 {errors.content && (
-                    <p className="text-sm text-destructive">{errors.content.message}</p>
+                    <p className="text-destructive text-sm">{errors.content.message}</p>
                 )}
             </div>
             <Button type="submit" disabled={isSubmitting}>

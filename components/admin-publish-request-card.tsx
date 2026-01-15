@@ -129,46 +129,38 @@ export function AdminPublishRequestCard({ request, onUpdated }: AdminPublishRequ
                     </div>
                 </CardHeader>
 
-                <CardContent className="pb-3 space-y-3">
+                <CardContent className="space-y-3 pb-3">
                     {/* Author Info */}
                     <div className="flex items-center gap-3">
                         <Avatar className="h-8 w-8">
                             <AvatarImage src={request.author?.image || undefined} />
-                            <AvatarFallback>
-                                {request.author?.name?.[0] || "U"}
-                            </AvatarFallback>
+                            <AvatarFallback>{request.author?.name?.[0] || "U"}</AvatarFallback>
                         </Avatar>
                         <div>
                             <p className="text-sm font-medium">{request.author?.name}</p>
-                            <p className="text-xs text-muted-foreground">
-                                {request.author?.email}
-                            </p>
+                            <p className="text-muted-foreground text-xs">{request.author?.email}</p>
                         </div>
                     </div>
 
                     {/* Author's Message */}
                     {request.message && request.status === "PENDING" && (
-                        <div className="rounded-md bg-muted p-3">
+                        <div className="bg-muted rounded-md p-3">
                             <div className="mb-1 flex items-center gap-2 text-sm font-medium">
                                 <MessageSquare className="h-4 w-4" />
                                 Author's Note
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                                {request.message}
-                            </p>
+                            <p className="text-muted-foreground text-sm">{request.message}</p>
                         </div>
                     )}
 
                     {/* Admin Response (for processed requests) */}
                     {request.message && request.status !== "PENDING" && (
-                        <div className="rounded-md bg-muted p-3">
+                        <div className="bg-muted rounded-md p-3">
                             <div className="mb-1 flex items-center gap-2 text-sm font-medium">
                                 <MessageSquare className="h-4 w-4" />
                                 Admin Response
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                                {request.message}
-                            </p>
+                            <p className="text-muted-foreground text-sm">{request.message}</p>
                         </div>
                     )}
                 </CardContent>
@@ -210,7 +202,8 @@ export function AdminPublishRequestCard({ request, onUpdated }: AdminPublishRequ
                     <DialogHeader>
                         <DialogTitle>Approve Publish Request</DialogTitle>
                         <DialogDescription>
-                            This will publish "{request.post.title}" and make it visible to all readers.
+                            This will publish "{request.post.title}" and make it visible to all
+                            readers.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-2">
@@ -256,7 +249,8 @@ export function AdminPublishRequestCard({ request, onUpdated }: AdminPublishRequ
                     <DialogHeader>
                         <DialogTitle>Reject Publish Request</DialogTitle>
                         <DialogDescription>
-                            The post will be reverted to draft status and the author will be notified.
+                            The post will be reverted to draft status and the author will be
+                            notified.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-2">

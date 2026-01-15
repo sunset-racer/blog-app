@@ -102,27 +102,23 @@ export function PublishRequestCard({ request, onCancelled }: PublishRequestCardP
                 <CardContent className="pb-3">
                     {/* Admin Feedback Message */}
                     {request.message && request.status !== "PENDING" && (
-                        <div className="rounded-md bg-muted p-3">
+                        <div className="bg-muted rounded-md p-3">
                             <div className="mb-1 flex items-center gap-2 text-sm font-medium">
                                 <MessageSquare className="h-4 w-4" />
                                 Admin Feedback
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                                {request.message}
-                            </p>
+                            <p className="text-muted-foreground text-sm">{request.message}</p>
                         </div>
                     )}
 
                     {/* Author's Original Message */}
                     {request.message && request.status === "PENDING" && (
-                        <div className="rounded-md bg-muted p-3">
+                        <div className="bg-muted rounded-md p-3">
                             <div className="mb-1 flex items-center gap-2 text-sm font-medium">
                                 <MessageSquare className="h-4 w-4" />
                                 Your Message
                             </div>
-                            <p className="text-sm text-muted-foreground">
-                                {request.message}
-                            </p>
+                            <p className="text-muted-foreground text-sm">{request.message}</p>
                         </div>
                     )}
                 </CardContent>

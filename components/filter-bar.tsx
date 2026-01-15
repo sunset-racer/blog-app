@@ -67,7 +67,9 @@ export function FilterBar({
                         ) : (
                             <>
                                 <DropdownMenuItem onClick={() => onTagChange(undefined)}>
-                                    <span className={!selectedTag ? "font-semibold" : ""}>All Tags</span>
+                                    <span className={!selectedTag ? "font-semibold" : ""}>
+                                        All Tags
+                                    </span>
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 {tags.map((tag) => (
@@ -76,11 +78,15 @@ export function FilterBar({
                                         onClick={() => onTagChange(tag.slug)}
                                         className="justify-between"
                                     >
-                                        <span className={selectedTag === tag.slug ? "font-semibold" : ""}>
+                                        <span
+                                            className={
+                                                selectedTag === tag.slug ? "font-semibold" : ""
+                                            }
+                                        >
                                             {tag.name}
                                         </span>
                                         {tag._count?.posts && (
-                                            <span className="text-xs text-muted-foreground">
+                                            <span className="text-muted-foreground text-xs">
                                                 {tag._count.posts}
                                             </span>
                                         )}
@@ -95,13 +101,13 @@ export function FilterBar({
             {/* Active Filters Display */}
             {hasActiveFilters && (
                 <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-sm text-muted-foreground">Active filters:</span>
+                    <span className="text-muted-foreground text-sm">Active filters:</span>
                     {search && (
                         <Badge variant="secondary" className="gap-1">
                             Search: {search}
                             <button
                                 onClick={() => onSearchChange("")}
-                                className="ml-1 hover:text-destructive"
+                                className="hover:text-destructive ml-1"
                                 aria-label="Remove search filter"
                             >
                                 <X className="h-3 w-3" />
@@ -113,7 +119,7 @@ export function FilterBar({
                             Tag: {selectedTagName}
                             <button
                                 onClick={() => onTagChange(undefined)}
-                                className="ml-1 hover:text-destructive"
+                                className="hover:text-destructive ml-1"
                                 aria-label="Remove tag filter"
                             >
                                 <X className="h-3 w-3" />

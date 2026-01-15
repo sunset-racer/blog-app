@@ -21,7 +21,7 @@ export default function AdminPostsLoading() {
 
             {/* Table */}
             <div className="rounded-lg border">
-                <div className="border-b bg-muted/50 p-4">
+                <div className="bg-muted/50 border-b p-4">
                     <div className="grid grid-cols-6 gap-4">
                         <Skeleton className="h-4 w-4" />
                         <Skeleton className="h-4 w-16" />

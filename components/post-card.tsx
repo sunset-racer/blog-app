@@ -23,7 +23,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                 }`}
             >
                 {post.coverImage && (
-                    <div className="relative aspect-video w-full overflow-hidden rounded-t-lg bg-muted">
+                    <div className="bg-muted relative aspect-video w-full overflow-hidden rounded-t-lg">
                         <img
                             src={post.coverImage}
                             alt={post.title}
@@ -40,7 +40,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                         ))}
                     </div>
                     <h3
-                        className={`line-clamp-2 font-bold leading-tight tracking-tight transition-colors group-hover:text-primary ${
+                        className={`group-hover:text-primary line-clamp-2 leading-tight font-bold tracking-tight transition-colors ${
                             featured ? "text-2xl md:text-3xl" : "text-xl"
                         }`}
                     >
@@ -48,25 +48,32 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                     </h3>
                 </CardHeader>
                 <CardContent className="pb-3">
-                    <p className={`text-muted-foreground ${featured ? "line-clamp-3" : "line-clamp-2"}`}>
+                    <p
+                        className={`text-muted-foreground ${featured ? "line-clamp-3" : "line-clamp-2"}`}
+                    >
                         {excerpt}
                     </p>
                 </CardContent>
                 <CardFooter className="flex items-center justify-between border-t pt-4">
                     <div className="flex items-center gap-2">
                         <Avatar className="h-8 w-8">
-                            <AvatarImage src={post.author.image || undefined} alt={post.author.name} />
+                            <AvatarImage
+                                src={post.author.image || undefined}
+                                alt={post.author.name}
+                            />
                             <AvatarFallback>{post.author.name[0]}</AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">
                             <span className="text-sm font-medium">{post.author.name}</span>
-                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <div className="text-muted-foreground flex items-center gap-1 text-xs">
                                 <Calendar className="h-3 w-3" />
-                                <span>{formatDistanceToNow(post.publishedAt || post.createdAt)}</span>
+                                <span>
+                                    {formatDistanceToNow(post.publishedAt || post.createdAt)}
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <div className="text-muted-foreground flex items-center gap-3 text-sm">
                         <div className="flex items-center gap-1">
                             <Eye className="h-4 w-4" />
                             <span>{post.views}</span>

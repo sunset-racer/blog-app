@@ -102,7 +102,7 @@ export function CommentList({ comments, postId }: CommentListProps) {
                                 </Avatar>
                                 <div>
                                     <p className="font-semibold">{comment.author.name}</p>
-                                    <p className="text-xs text-muted-foreground">
+                                    <p className="text-muted-foreground text-xs">
                                         {formatDistanceToNow(comment.createdAt)}
                                         {comment.updatedAt !== comment.createdAt && " (edited)"}
                                     </p>
@@ -167,7 +167,9 @@ export function CommentList({ comments, postId }: CommentListProps) {
                                 </div>
                             </div>
                         ) : (
-                            <p className="whitespace-pre-wrap text-muted-foreground">{comment.content}</p>
+                            <p className="text-muted-foreground whitespace-pre-wrap">
+                                {comment.content}
+                            </p>
                         )}
                     </div>
                 );

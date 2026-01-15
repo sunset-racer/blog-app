@@ -49,9 +49,7 @@ export default function MyPostsPage() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="text-3xl font-bold">My Posts</h1>
-                    <p className="text-muted-foreground">
-                        Manage and track all your blog posts
-                    </p>
+                    <p className="text-muted-foreground">Manage and track all your blog posts</p>
                 </div>
                 <Button asChild>
                     <Link href="/dashboard/posts/new">
@@ -65,7 +63,7 @@ export default function MyPostsPage() {
             <div className="flex flex-col gap-4 sm:flex-row">
                 <form onSubmit={handleSearch} className="flex flex-1 gap-2">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                             placeholder="Search posts..."
                             value={searchInput}
@@ -101,8 +99,10 @@ export default function MyPostsPage() {
             {/* Pagination */}
             {data && data.pagination.totalPages > 1 && (
                 <div className="flex items-center justify-between">
-                    <p className="text-sm text-muted-foreground">
-                        Showing {((page - 1) * 10) + 1} to {Math.min(page * 10, data.pagination.total)} of {data.pagination.total} posts
+                    <p className="text-muted-foreground text-sm">
+                        Showing {(page - 1) * 10 + 1} to{" "}
+                        {Math.min(page * 10, data.pagination.total)} of {data.pagination.total}{" "}
+                        posts
                     </p>
                     <div className="flex gap-2">
                         <Button

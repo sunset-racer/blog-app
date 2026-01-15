@@ -19,7 +19,13 @@ interface PostsGridProps {
     emptyMessage?: string;
 }
 
-export function PostsGrid({ posts, isLoading, pagination, onPageChange, emptyMessage }: PostsGridProps) {
+export function PostsGrid({
+    posts,
+    isLoading,
+    pagination,
+    onPageChange,
+    emptyMessage,
+}: PostsGridProps) {
     if (isLoading) {
         return (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -35,7 +41,7 @@ export function PostsGrid({ posts, isLoading, pagination, onPageChange, emptyMes
             <div className="flex min-h-[400px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
                     <h3 className="text-lg font-semibold">No posts found</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         {emptyMessage || "Try adjusting your filters or check back later"}
                     </p>
                 </div>
@@ -77,9 +83,12 @@ export function PostsGrid({ posts, isLoading, pagination, onPageChange, emptyMes
 
                                 if (!shouldShow) {
                                     // Show ellipsis once between groups
-                                    if (page === pagination.page - 2 || page === pagination.page + 2) {
+                                    if (
+                                        page === pagination.page - 2 ||
+                                        page === pagination.page + 2
+                                    ) {
                                         return (
-                                            <span key={page} className="px-2 text-muted-foreground">
+                                            <span key={page} className="text-muted-foreground px-2">
                                                 ...
                                             </span>
                                         );
@@ -113,9 +122,10 @@ export function PostsGrid({ posts, isLoading, pagination, onPageChange, emptyMes
                     </div>
 
                     {/* Results Info */}
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-muted-foreground text-sm">
                         Showing {(pagination.page - 1) * pagination.limit + 1} to{" "}
-                        {Math.min(pagination.page * pagination.limit, pagination.total)} of {pagination.total} posts
+                        {Math.min(pagination.page * pagination.limit, pagination.total)} of{" "}
+                        {pagination.total} posts
                     </div>
                 </div>
             )}

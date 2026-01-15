@@ -47,13 +47,15 @@ export default function DashboardPage() {
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">Total Posts</CardTitle>
-                        <FileText className="h-4 w-4 text-muted-foreground" />
+                        <FileText className="text-muted-foreground h-4 w-4" />
                     </CardHeader>
                     <CardContent>
                         {isLoading ? (
                             <Skeleton className="h-8 w-16" />
                         ) : (
-                            <div className="text-2xl font-bold">{postsData?.pagination.total || 0}</div>
+                            <div className="text-2xl font-bold">
+                                {postsData?.pagination.total || 0}
+                            </div>
                         )}
                     </CardContent>
                 </Card>
@@ -89,7 +91,7 @@ export default function DashboardPage() {
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
                         <CardTitle className="text-sm font-medium">Comments</CardTitle>
-                        <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                        <MessageSquare className="text-muted-foreground h-4 w-4" />
                     </CardHeader>
                     <CardContent>
                         {isLoading ? (
@@ -109,9 +111,7 @@ export default function DashboardPage() {
                             <FileText className="h-5 w-5" />
                             My Posts
                         </CardTitle>
-                        <CardDescription>
-                            Manage your blog posts
-                        </CardDescription>
+                        <CardDescription>Manage your blog posts</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="mb-4 space-y-2 text-sm">
@@ -136,9 +136,7 @@ export default function DashboardPage() {
                             <Clock className="h-5 w-5" />
                             Publish Requests
                         </CardTitle>
-                        <CardDescription>
-                            Track your publish requests
-                        </CardDescription>
+                        <CardDescription>Track your publish requests</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="mb-4 space-y-2 text-sm">
@@ -163,9 +161,7 @@ export default function DashboardPage() {
                             <MessageSquare className="h-5 w-5" />
                             My Comments
                         </CardTitle>
-                        <CardDescription>
-                            Manage your comments
-                        </CardDescription>
+                        <CardDescription>Manage your comments</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="mb-4 space-y-2 text-sm">

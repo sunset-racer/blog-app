@@ -8,7 +8,10 @@ interface PostStatusBadgeProps {
     className?: string;
 }
 
-const statusConfig: Record<PostStatus, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
+const statusConfig: Record<
+    PostStatus,
+    { label: string; variant: "default" | "secondary" | "destructive" | "outline" }
+> = {
     DRAFT: {
         label: "Draft",
         variant: "secondary",

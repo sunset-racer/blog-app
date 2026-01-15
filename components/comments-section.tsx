@@ -33,8 +33,8 @@ export function CommentsSection({ postId }: CommentsSectionProps) {
             {isAuthenticated ? (
                 <CommentForm postId={postId} />
             ) : (
-                <div className="rounded-lg border border-dashed bg-muted/50 p-6 text-center">
-                    <p className="mb-4 text-muted-foreground">
+                <div className="bg-muted/50 rounded-lg border border-dashed p-6 text-center">
+                    <p className="text-muted-foreground mb-4">
                         You need to be signed in to comment
                     </p>
                     <div className="flex items-center justify-center gap-2">

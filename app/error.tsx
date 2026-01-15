@@ -19,20 +19,17 @@ export default function GlobalError({ error, reset }: ErrorProps) {
     return (
         <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4">
             <div className="text-center">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-destructive/10">
-                    <AlertTriangle className="h-10 w-10 text-destructive" />
+                <div className="bg-destructive/10 mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full">
+                    <AlertTriangle className="text-destructive h-10 w-10" />
                 </div>
 
                 <h1 className="mb-2 text-3xl font-bold">Something went wrong</h1>
-                <p className="mb-6 max-w-md text-muted-foreground">
-                    We encountered an unexpected error. Please try again or return to the
-                    homepage.
+                <p className="text-muted-foreground mb-6 max-w-md">
+                    We encountered an unexpected error. Please try again or return to the homepage.
                 </p>
 
                 {error.digest && (
-                    <p className="mb-6 text-xs text-muted-foreground">
-                        Error ID: {error.digest}
-                    </p>
+                    <p className="text-muted-foreground mb-6 text-xs">Error ID: {error.digest}</p>
                 )}
 
                 <div className="flex flex-col justify-center gap-3 sm:flex-row">

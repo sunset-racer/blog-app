@@ -26,17 +26,15 @@ export function PublishRequestsList({ filter = "all" }: PublishRequestsListProps
 
     const requests = data?.requests || [];
     const filteredRequests =
-        filter === "all"
-            ? requests
-            : requests.filter((r) => r.status === filter);
+        filter === "all" ? requests : requests.filter((r) => r.status === filter);
 
     if (filteredRequests.length === 0) {
         return (
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
-                    <FileText className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
+                    <FileText className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
                     <h3 className="text-lg font-semibold">No publish requests</h3>
-                    <p className="mb-4 text-sm text-muted-foreground">
+                    <p className="text-muted-foreground mb-4 text-sm">
                         {filter === "all"
                             ? "You haven't submitted any publish requests yet."
                             : `No ${filter.toLowerCase()} requests found.`}

@@ -61,27 +61,27 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="bg-background min-h-screen">
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative overflow-hidden border-b bg-gradient-to-b from-primary/5 via-primary/5 to-background">
-                <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+            <section className="from-primary/5 via-primary/5 to-background relative overflow-hidden border-b bg-gradient-to-b">
+                <div className="bg-grid-pattern absolute inset-0 opacity-5" />
                 <div className="container mx-auto px-4 py-16 md:py-24">
                     <div className="mx-auto max-w-3xl text-center">
-                        <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-background/80 px-4 py-1.5 text-sm backdrop-blur">
-                            <Sparkles className="h-4 w-4 text-primary" />
+                        <div className="bg-background/80 mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm backdrop-blur">
+                            <Sparkles className="text-primary h-4 w-4" />
                             <span>Your source for technical insights</span>
                         </div>
                         <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
                             Discover the Latest in{" "}
-                            <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                            <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
                                 Tech & Development
                             </span>
                         </h1>
-                        <p className="mb-8 text-lg text-muted-foreground md:text-xl">
-                            Explore tutorials, best practices, and insights from developers around the world.
-                            Stay ahead with cutting-edge technical content.
+                        <p className="text-muted-foreground mb-8 text-lg md:text-xl">
+                            Explore tutorials, best practices, and insights from developers around
+                            the world. Stay ahead with cutting-edge technical content.
                         </p>
                         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                             <Button size="lg" asChild>
@@ -92,9 +92,7 @@ export default function HomePage() {
                             </Button>
                             {!isAuthenticated && (
                                 <Button size="lg" variant="outline" asChild>
-                                    <Link href="/signup">
-                                        Join the Community
-                                    </Link>
+                                    <Link href="/signup">Join the Community</Link>
                                 </Button>
                             )}
                         </div>
@@ -104,24 +102,28 @@ export default function HomePage() {
                     <div className="mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-8">
                         <div className="text-center">
                             <div className="flex justify-center">
-                                <FileText className="h-8 w-8 text-primary" />
+                                <FileText className="text-primary h-8 w-8" />
                             </div>
-                            <p className="mt-2 text-2xl font-bold">{postsData?.pagination?.total || "50"}+</p>
-                            <p className="text-sm text-muted-foreground">Articles</p>
+                            <p className="mt-2 text-2xl font-bold">
+                                {postsData?.pagination?.total || "50"}+
+                            </p>
+                            <p className="text-muted-foreground text-sm">Articles</p>
                         </div>
                         <div className="text-center">
                             <div className="flex justify-center">
-                                <BookOpen className="h-8 w-8 text-primary" />
+                                <BookOpen className="text-primary h-8 w-8" />
                             </div>
-                            <p className="mt-2 text-2xl font-bold">{tagsData?.tags?.length || "10"}+</p>
-                            <p className="text-sm text-muted-foreground">Topics</p>
+                            <p className="mt-2 text-2xl font-bold">
+                                {tagsData?.tags?.length || "10"}+
+                            </p>
+                            <p className="text-muted-foreground text-sm">Topics</p>
                         </div>
                         <div className="text-center">
                             <div className="flex justify-center">
-                                <Users className="h-8 w-8 text-primary" />
+                                <Users className="text-primary h-8 w-8" />
                             </div>
                             <p className="mt-2 text-2xl font-bold">1K+</p>
-                            <p className="text-sm text-muted-foreground">Readers</p>
+                            <p className="text-muted-foreground text-sm">Readers</p>
                         </div>
                     </div>
                 </div>
@@ -143,12 +145,12 @@ export default function HomePage() {
 
                             {/* Active Filters Display */}
                             {(search || selectedTag) && (
-                                <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                                <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-sm">
                                     <span>Active filters:</span>
                                     {search && (
                                         <button
                                             onClick={() => handleSearch("")}
-                                            className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-primary hover:bg-primary/20 transition-colors"
+                                            className="bg-primary/10 text-primary hover:bg-primary/20 inline-flex items-center gap-1 rounded-full px-3 py-1 transition-colors"
                                         >
                                             Search: {search}
                                             <span className="ml-1">&times;</span>
@@ -157,9 +159,13 @@ export default function HomePage() {
                                     {selectedTag && (
                                         <button
                                             onClick={() => setSelectedTag(undefined)}
-                                            className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-primary hover:bg-primary/20 transition-colors"
+                                            className="bg-primary/10 text-primary hover:bg-primary/20 inline-flex items-center gap-1 rounded-full px-3 py-1 transition-colors"
                                         >
-                                            Tag: {tagsData?.tags.find((t) => t.slug === selectedTag)?.name}
+                                            Tag:{" "}
+                                            {
+                                                tagsData?.tags.find((t) => t.slug === selectedTag)
+                                                    ?.name
+                                            }
                                             <span className="ml-1">&times;</span>
                                         </button>
                                     )}
@@ -168,7 +174,7 @@ export default function HomePage() {
                         </div>
 
                         <div className="lg:sticky lg:top-24 lg:self-start">
-                            <div className="rounded-lg border bg-card p-4">
+                            <div className="bg-card rounded-lg border p-4">
                                 <TagCloud
                                     tags={tagsData?.tags || []}
                                     isLoading={tagsLoading}
@@ -192,27 +198,30 @@ export default function HomePage() {
             </main>
 
             {/* Newsletter Section */}
-            <section className="border-t bg-muted/30">
+            <section className="bg-muted/30 border-t">
                 <div className="container mx-auto px-4 py-16">
                     <div className="mx-auto max-w-2xl text-center">
                         <h2 className="mb-4 text-2xl font-bold tracking-tight md:text-3xl">
                             Stay Updated
                         </h2>
-                        <p className="mb-8 text-muted-foreground">
+                        <p className="text-muted-foreground mb-8">
                             Get the latest articles and insights delivered directly to your inbox.
                             No spam, unsubscribe anytime.
                         </p>
-                        <form className="flex flex-col gap-3 sm:flex-row sm:justify-center" onSubmit={(e) => e.preventDefault()}>
+                        <form
+                            className="flex flex-col gap-3 sm:flex-row sm:justify-center"
+                            onSubmit={(e) => e.preventDefault()}
+                        >
                             <input
                                 type="email"
                                 placeholder="Enter your email"
-                                className="h-11 rounded-md border bg-background px-4 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary sm:w-72"
+                                className="bg-background placeholder:text-muted-foreground focus:ring-primary h-11 rounded-md border px-4 text-sm focus:ring-2 focus:outline-none sm:w-72"
                             />
                             <Button type="submit" size="lg">
                                 Subscribe
                             </Button>
                         </form>
-                        <p className="mt-4 text-xs text-muted-foreground">
+                        <p className="text-muted-foreground mt-4 text-xs">
                             By subscribing, you agree to our Privacy Policy.
                         </p>
                     </div>
@@ -220,37 +229,46 @@ export default function HomePage() {
             </section>
 
             {/* Footer */}
-            <footer className="border-t bg-background">
+            <footer className="bg-background border-t">
                 <div className="container mx-auto px-4 py-12">
                     <div className="grid gap-8 md:grid-cols-4">
                         {/* Brand */}
                         <div className="md:col-span-2">
-                            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+                            <Link href="/" className="flex items-center gap-2 text-xl font-bold">
                                 <BookOpen className="h-6 w-6" />
                                 <span>TechBlog</span>
                             </Link>
-                            <p className="mt-4 max-w-md text-sm text-muted-foreground">
-                                A platform for developers to share knowledge, learn from others,
-                                and stay up-to-date with the latest in technology.
+                            <p className="text-muted-foreground mt-4 max-w-md text-sm">
+                                A platform for developers to share knowledge, learn from others, and
+                                stay up-to-date with the latest in technology.
                             </p>
                         </div>
 
                         {/* Quick Links */}
                         <div>
                             <h3 className="mb-4 font-semibold">Quick Links</h3>
-                            <ul className="space-y-2 text-sm text-muted-foreground">
+                            <ul className="text-muted-foreground space-y-2 text-sm">
                                 <li>
-                                    <Link href="/posts" className="hover:text-foreground transition-colors">
+                                    <Link
+                                        href="/posts"
+                                        className="hover:text-foreground transition-colors"
+                                    >
                                         All Posts
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/tags" className="hover:text-foreground transition-colors">
+                                    <Link
+                                        href="/tags"
+                                        className="hover:text-foreground transition-colors"
+                                    >
                                         Tags
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/about" className="hover:text-foreground transition-colors">
+                                    <Link
+                                        href="/about"
+                                        className="hover:text-foreground transition-colors"
+                                    >
                                         About
                                     </Link>
                                 </li>
@@ -260,14 +278,20 @@ export default function HomePage() {
                         {/* Legal */}
                         <div>
                             <h3 className="mb-4 font-semibold">Legal</h3>
-                            <ul className="space-y-2 text-sm text-muted-foreground">
+                            <ul className="text-muted-foreground space-y-2 text-sm">
                                 <li>
-                                    <Link href="/privacy" className="hover:text-foreground transition-colors">
+                                    <Link
+                                        href="/privacy"
+                                        className="hover:text-foreground transition-colors"
+                                    >
                                         Privacy Policy
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/terms" className="hover:text-foreground transition-colors">
+                                    <Link
+                                        href="/terms"
+                                        className="hover:text-foreground transition-colors"
+                                    >
                                         Terms of Service
                                     </Link>
                                 </li>
@@ -275,8 +299,11 @@ export default function HomePage() {
                         </div>
                     </div>
 
-                    <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
-                        <p>&copy; {new Date().getFullYear()} TechBlog. Built with Next.js and Better-Auth.</p>
+                    <div className="text-muted-foreground mt-12 border-t pt-8 text-center text-sm">
+                        <p>
+                            &copy; {new Date().getFullYear()} TechBlog. Built with Next.js and
+                            Better-Auth.
+                        </p>
                     </div>
                 </div>
             </footer>

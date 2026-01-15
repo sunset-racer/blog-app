@@ -41,15 +41,13 @@ export default function AdminCommentsPage() {
             {/* Page Header */}
             <div>
                 <h1 className="text-3xl font-bold">Comments</h1>
-                <p className="text-muted-foreground">
-                    Moderate comments across all posts
-                </p>
+                <p className="text-muted-foreground">Moderate comments across all posts</p>
             </div>
 
             {/* Filters */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row">
                 <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                     <Input
                         placeholder="Search comments..."
                         value={searchInput}
@@ -73,7 +71,7 @@ export default function AdminCommentsPage() {
 
             {/* Stats */}
             {data && (
-                <div className="text-sm text-muted-foreground">
+                <div className="text-muted-foreground text-sm">
                     {data.pagination.total} comment{data.pagination.total !== 1 ? "s" : ""} found
                     {search && ` for "${search}"`}
                 </div>
@@ -89,7 +87,7 @@ export default function AdminCommentsPage() {
             {/* Pagination */}
             {data && data.pagination.totalPages > 1 && (
                 <div className="flex items-center justify-between">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         Showing {(page - 1) * 20 + 1} to{" "}
                         {Math.min(page * 20, data.pagination.total)} of {data.pagination.total}{" "}
                         comments

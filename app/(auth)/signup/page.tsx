@@ -80,7 +80,7 @@ export default function SignupPage() {
             {/* Header */}
             <div className="space-y-2 text-center">
                 <h1 className="text-2xl font-bold tracking-tight">Create an account</h1>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                     Join TechBlog and start sharing your knowledge
                 </p>
             </div>
@@ -90,7 +90,7 @@ export default function SignupPage() {
                 <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
                     <div className="relative">
-                        <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <User className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                             id="name"
                             type="text"
@@ -101,14 +101,14 @@ export default function SignupPage() {
                         />
                     </div>
                     {errors.name && (
-                        <p className="text-sm text-destructive">{errors.name.message}</p>
+                        <p className="text-destructive text-sm">{errors.name.message}</p>
                     )}
                 </div>
 
                 <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Mail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                             id="email"
                             type="email"
@@ -119,14 +119,14 @@ export default function SignupPage() {
                         />
                     </div>
                     {errors.email && (
-                        <p className="text-sm text-destructive">{errors.email.message}</p>
+                        <p className="text-destructive text-sm">{errors.email.message}</p>
                     )}
                 </div>
 
                 <div className="space-y-2">
                     <Label htmlFor="password">Password</Label>
                     <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Lock className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                             id="password"
                             type="password"
@@ -137,26 +137,44 @@ export default function SignupPage() {
                         />
                     </div>
                     {errors.password && (
-                        <p className="text-sm text-destructive">{errors.password.message}</p>
+                        <p className="text-destructive text-sm">{errors.password.message}</p>
                     )}
                     {/* Password strength indicators */}
                     {password && (
                         <div className="space-y-1.5 pt-1">
                             <div className="flex items-center gap-2 text-xs">
-                                <Check className={`h-3 w-3 ${hasMinLength ? "text-green-500" : "text-muted-foreground"}`} />
-                                <span className={hasMinLength ? "text-green-500" : "text-muted-foreground"}>
+                                <Check
+                                    className={`h-3 w-3 ${hasMinLength ? "text-green-500" : "text-muted-foreground"}`}
+                                />
+                                <span
+                                    className={
+                                        hasMinLength ? "text-green-500" : "text-muted-foreground"
+                                    }
+                                >
                                     At least 8 characters
                                 </span>
                             </div>
                             <div className="flex items-center gap-2 text-xs">
-                                <Check className={`h-3 w-3 ${hasUppercase ? "text-green-500" : "text-muted-foreground"}`} />
-                                <span className={hasUppercase ? "text-green-500" : "text-muted-foreground"}>
+                                <Check
+                                    className={`h-3 w-3 ${hasUppercase ? "text-green-500" : "text-muted-foreground"}`}
+                                />
+                                <span
+                                    className={
+                                        hasUppercase ? "text-green-500" : "text-muted-foreground"
+                                    }
+                                >
                                     One uppercase letter
                                 </span>
                             </div>
                             <div className="flex items-center gap-2 text-xs">
-                                <Check className={`h-3 w-3 ${hasNumber ? "text-green-500" : "text-muted-foreground"}`} />
-                                <span className={hasNumber ? "text-green-500" : "text-muted-foreground"}>
+                                <Check
+                                    className={`h-3 w-3 ${hasNumber ? "text-green-500" : "text-muted-foreground"}`}
+                                />
+                                <span
+                                    className={
+                                        hasNumber ? "text-green-500" : "text-muted-foreground"
+                                    }
+                                >
                                     One number
                                 </span>
                             </div>
@@ -167,7 +185,7 @@ export default function SignupPage() {
                 <div className="space-y-2">
                     <Label htmlFor="confirmPassword">Confirm Password</Label>
                     <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Lock className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                             id="confirmPassword"
                             type="password"
@@ -178,7 +196,7 @@ export default function SignupPage() {
                         />
                     </div>
                     {errors.confirmPassword && (
-                        <p className="text-sm text-destructive">{errors.confirmPassword.message}</p>
+                        <p className="text-destructive text-sm">{errors.confirmPassword.message}</p>
                     )}
                 </div>
 
@@ -203,7 +221,7 @@ export default function SignupPage() {
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
+                    <span className="bg-background text-muted-foreground px-2">
                         Already have an account?
                     </span>
                 </div>
@@ -211,9 +229,7 @@ export default function SignupPage() {
 
             {/* Sign in link */}
             <Button variant="outline" className="w-full" asChild>
-                <Link href="/login">
-                    Sign in instead
-                </Link>
+                <Link href="/login">Sign in instead</Link>
             </Button>
         </div>
     );

@@ -20,7 +20,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (isLoading) {
         return (
             <div className="flex h-[calc(100vh-4rem)]">
-                <div className="w-64 border-r bg-muted/30 p-4">
+                <div className="bg-muted/30 w-64 border-r p-4">
                     <Skeleton className="mb-4 h-8 w-32" />
                     <div className="space-y-2">
                         {Array.from({ length: 6 }).map((_, i) => (

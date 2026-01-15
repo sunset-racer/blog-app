@@ -33,20 +33,26 @@ export function Navbar() {
     };
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <nav className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 font-bold text-xl">
+                <Link href="/" className="flex items-center gap-2 text-xl font-bold">
                     <BookOpen className="h-6 w-6" />
                     <span>TechBlog</span>
                 </Link>
 
                 {/* Desktop Navigation */}
                 <div className="hidden items-center gap-6 md:flex">
-                    <Link href="/posts" className="text-sm font-medium transition-colors hover:text-primary">
+                    <Link
+                        href="/posts"
+                        className="hover:text-primary text-sm font-medium transition-colors"
+                    >
                         Posts
                     </Link>
-                    <Link href="/tags" className="text-sm font-medium transition-colors hover:text-primary">
+                    <Link
+                        href="/tags"
+                        className="hover:text-primary text-sm font-medium transition-colors"
+                    >
                         Tags
                     </Link>
 
@@ -63,7 +69,12 @@ export function Navbar() {
 
                         {/* Admin Panel button */}
                         {isAuthenticated && isAdmin && (
-                            <Button variant="outline" size="sm" asChild className="gap-2 border-amber-500/50 text-amber-600 hover:bg-amber-50 hover:text-amber-700 dark:border-amber-500/30 dark:text-amber-500 dark:hover:bg-amber-950 dark:hover:text-amber-400">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                asChild
+                                className="gap-2 border-amber-500/50 text-amber-600 hover:bg-amber-50 hover:text-amber-700 dark:border-amber-500/30 dark:text-amber-500 dark:hover:bg-amber-950 dark:hover:text-amber-400"
+                            >
                                 <Link href="/admin">
                                     <Shield className="h-4 w-4" />
                                     Admin
@@ -76,9 +87,15 @@ export function Navbar() {
                         {isAuthenticated && user ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                                    <Button
+                                        variant="ghost"
+                                        className="relative h-9 w-9 rounded-full"
+                                    >
                                         <Avatar className="h-9 w-9">
-                                            <AvatarImage src={user.image || undefined} alt={user.name} />
+                                            <AvatarImage
+                                                src={user.image || undefined}
+                                                alt={user.name}
+                                            />
                                             <AvatarFallback>{user.name[0]}</AvatarFallback>
                                         </Avatar>
                                     </Button>
@@ -97,7 +114,9 @@ export function Navbar() {
                                                     </Badge>
                                                 )}
                                             </div>
-                                            <p className="text-xs text-muted-foreground">{user.email}</p>
+                                            <p className="text-muted-foreground text-xs">
+                                                {user.email}
+                                            </p>
                                         </div>
                                     </DropdownMenuLabel>
                                     <DropdownMenuSeparator />
@@ -124,7 +143,10 @@ export function Navbar() {
                                         </DropdownMenuItem>
                                     )}
                                     <DropdownMenuSeparator />
-                                    <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive">
+                                    <DropdownMenuItem
+                                        onClick={handleSignOut}
+                                        className="text-destructive cursor-pointer"
+                                    >
                                         <LogOut className="mr-2 h-4 w-4" />
                                         Sign Out
                                     </DropdownMenuItem>
@@ -158,18 +180,18 @@ export function Navbar() {
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="border-t bg-background md:hidden">
+                <div className="bg-background border-t md:hidden">
                     <div className="container mx-auto px-4 py-4">
                         {/* User Info (if authenticated) */}
                         {isAuthenticated && user && (
-                            <div className="mb-4 flex items-center gap-3 rounded-lg bg-muted/50 p-3">
+                            <div className="bg-muted/50 mb-4 flex items-center gap-3 rounded-lg p-3">
                                 <Avatar className="h-10 w-10">
                                     <AvatarImage src={user.image || undefined} alt={user.name} />
                                     <AvatarFallback>{user.name[0]}</AvatarFallback>
                                 </Avatar>
-                                <div className="flex-1 min-w-0">
+                                <div className="min-w-0 flex-1">
                                     <div className="flex items-center gap-2">
-                                        <p className="text-sm font-medium truncate">{user.name}</p>
+                                        <p className="truncate text-sm font-medium">{user.name}</p>
                                         {user.role && (
                                             <Badge
                                                 variant={isAdmin ? "default" : "secondary"}
@@ -179,7 +201,9 @@ export function Navbar() {
                                             </Badge>
                                         )}
                                     </div>
-                                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                                    <p className="text-muted-foreground truncate text-xs">
+                                        {user.email}
+                                    </p>
                                 </div>
                             </div>
                         )}
@@ -188,18 +212,18 @@ export function Navbar() {
                         <div className="space-y-1">
                             <Link
                                 href="/posts"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                                className="hover:bg-muted flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                <FileEdit className="h-4 w-4 text-muted-foreground" />
+                                <FileEdit className="text-muted-foreground h-4 w-4" />
                                 Posts
                             </Link>
                             <Link
                                 href="/tags"
-                                className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                                className="hover:bg-muted flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                <BookOpen className="h-4 w-4 text-muted-foreground" />
+                                <BookOpen className="text-muted-foreground h-4 w-4" />
                                 Tags
                             </Link>
                         </div>
@@ -214,10 +238,10 @@ export function Navbar() {
                                             {isAuthor && (
                                                 <Link
                                                     href="/dashboard"
-                                                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                                                    className="hover:bg-muted flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
-                                                    <LayoutDashboard className="h-4 w-4 text-muted-foreground" />
+                                                    <LayoutDashboard className="text-muted-foreground h-4 w-4" />
                                                     Dashboard
                                                 </Link>
                                             )}
@@ -240,10 +264,10 @@ export function Navbar() {
                                 <div className="space-y-1">
                                     <Link
                                         href="/profile"
-                                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                                        className="hover:bg-muted flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
-                                        <User className="h-4 w-4 text-muted-foreground" />
+                                        <User className="text-muted-foreground h-4 w-4" />
                                         Profile
                                     </Link>
                                 </div>
@@ -252,7 +276,7 @@ export function Navbar() {
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        className="w-full text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                                        className="text-destructive hover:bg-destructive hover:text-destructive-foreground w-full"
                                         onClick={() => {
                                             setMobileMenuOpen(false);
                                             handleSignOut();
@@ -268,12 +292,18 @@ export function Navbar() {
                                 <div className="my-3 border-t" />
                                 <div className="flex gap-2">
                                     <Button variant="outline" size="sm" className="flex-1" asChild>
-                                        <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                                        <Link
+                                            href="/login"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                        >
                                             Sign In
                                         </Link>
                                     </Button>
                                     <Button size="sm" className="flex-1" asChild>
-                                        <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                                        <Link
+                                            href="/signup"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                        >
                                             Sign Up
                                         </Link>
                                     </Button>

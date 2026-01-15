@@ -16,12 +16,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
                         refetchOnWindowFocus: false,
                     },
                 },
-            }),
+            })
     );
 
     return (
         <QueryClientProvider client={queryClient}>
-            <NextThemesProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <NextThemesProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+            >
                 {children}
                 <Toaster />
             </NextThemesProvider>

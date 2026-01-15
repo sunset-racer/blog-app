@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -37,12 +32,7 @@ import { PostStatusBadge } from "@/components/post-status-badge";
 import { useDeletePost } from "@/hooks/use-posts";
 import { formatDistanceToNow } from "@/lib/date-utils";
 import { toast } from "sonner";
-import {
-    MoreHorizontal,
-    Pencil,
-    Trash2,
-    ExternalLink,
-} from "lucide-react";
+import { MoreHorizontal, Pencil, Trash2, ExternalLink } from "lucide-react";
 import type { Post } from "@/types/api";
 
 interface MyPostsTableProps {
@@ -83,8 +73,8 @@ export function MyPostsTable({ posts, isLoading, onDeleted }: MyPostsTableProps)
                 const post = row.original;
                 return (
                     <div className="flex flex-col">
-                        <span className="font-medium line-clamp-1">{post.title}</span>
-                        <span className="text-sm text-muted-foreground line-clamp-1">
+                        <span className="line-clamp-1 font-medium">{post.title}</span>
+                        <span className="text-muted-foreground line-clamp-1 text-sm">
                             {post.excerpt || post.content.substring(0, 60) + "..."}
                         </span>
                     </div>
@@ -100,14 +90,14 @@ export function MyPostsTable({ posts, isLoading, onDeleted }: MyPostsTableProps)
             accessorKey: "views",
             header: "Views",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">{row.original.views}</span>
+                <span className="text-muted-foreground text-sm">{row.original.views}</span>
             ),
         },
         {
             accessorKey: "createdAt",
             header: "Created",
             cell: ({ row }) => (
-                <span className="text-sm text-muted-foreground">
+                <span className="text-muted-foreground text-sm">
                     {formatDistanceToNow(row.original.createdAt)}
                 </span>
             ),
@@ -176,7 +166,7 @@ export function MyPostsTable({ posts, isLoading, onDeleted }: MyPostsTableProps)
             <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
                 <div className="text-center">
                     <h3 className="text-lg font-semibold">No posts yet</h3>
-                    <p className="mb-4 text-sm text-muted-foreground">
+                    <p className="text-muted-foreground mb-4 text-sm">
                         Create your first post to get started
                     </p>
                     <Button asChild>
@@ -212,10 +202,7 @@ export function MyPostsTable({ posts, isLoading, onDeleted }: MyPostsTableProps)
                             <TableRow key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id}>
-                                        {flexRender(
-                                            cell.column.columnDef.cell,
-                                            cell.getContext()
-                                        )}
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
                             </TableRow>
@@ -230,7 +217,8 @@ export function MyPostsTable({ posts, isLoading, onDeleted }: MyPostsTableProps)
                     <DialogHeader>
                         <DialogTitle>Delete Post</DialogTitle>
                         <DialogDescription>
-                            Are you sure you want to delete "{postToDelete?.title}"? This action cannot be undone.
+                            Are you sure you want to delete "{postToDelete?.title}"? This action
+                            cannot be undone.
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>

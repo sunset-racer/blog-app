@@ -14,11 +14,7 @@ export const postFormSchema = z.object({
         .max(300, "Excerpt must be less than 300 characters")
         .optional()
         .or(z.literal("")),
-    coverImage: z
-        .string()
-        .url("Must be a valid URL")
-        .optional()
-        .or(z.literal("")),
+    coverImage: z.string().url("Must be a valid URL").optional().or(z.literal("")),
     tags: z.array(z.string()).max(5, "Maximum 5 tags allowed"),
 });
 

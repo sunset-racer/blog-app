@@ -62,7 +62,7 @@ export default function LoginPage() {
             {/* Header */}
             <div className="space-y-2 text-center">
                 <h1 className="text-2xl font-bold tracking-tight">Welcome back</h1>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                     Enter your credentials to access your account
                 </p>
             </div>
@@ -72,7 +72,7 @@ export default function LoginPage() {
                 <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Mail className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                             id="email"
                             type="email"
@@ -83,7 +83,7 @@ export default function LoginPage() {
                         />
                     </div>
                     {errors.email && (
-                        <p className="text-sm text-destructive">{errors.email.message}</p>
+                        <p className="text-destructive text-sm">{errors.email.message}</p>
                     )}
                 </div>
 
@@ -92,13 +92,13 @@ export default function LoginPage() {
                         <Label htmlFor="password">Password</Label>
                         <Link
                             href="/forgot-password"
-                            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                            className="text-muted-foreground hover:text-foreground text-xs transition-colors"
                         >
                             Forgot password?
                         </Link>
                     </div>
                     <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Lock className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                             id="password"
                             type="password"
@@ -109,7 +109,7 @@ export default function LoginPage() {
                         />
                     </div>
                     {errors.password && (
-                        <p className="text-sm text-destructive">{errors.password.message}</p>
+                        <p className="text-destructive text-sm">{errors.password.message}</p>
                     )}
                 </div>
 
@@ -134,7 +134,7 @@ export default function LoginPage() {
                     <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
+                    <span className="bg-background text-muted-foreground px-2">
                         New to TechBlog?
                     </span>
                 </div>
@@ -142,9 +142,7 @@ export default function LoginPage() {
 
             {/* Sign up link */}
             <Button variant="outline" className="w-full" asChild>
-                <Link href="/signup">
-                    Create an account
-                </Link>
+                <Link href="/signup">Create an account</Link>
             </Button>
         </div>
     );

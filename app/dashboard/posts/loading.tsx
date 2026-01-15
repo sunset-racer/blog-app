@@ -15,7 +15,7 @@ export default function DashboardPostsLoading() {
             {/* Table */}
             <div className="rounded-lg border">
                 {/* Table Header */}
-                <div className="border-b bg-muted/50 p-4">
+                <div className="bg-muted/50 border-b p-4">
                     <div className="grid grid-cols-5 gap-4">
                         <Skeleton className="h-4 w-16" />
                         <Skeleton className="h-4 w-16" />

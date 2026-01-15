@@ -63,18 +63,19 @@ export function DashboardSidebar() {
     const { isAdmin } = useAuth();
 
     return (
-        <aside className="flex h-full w-64 flex-col border-r bg-card">
+        <aside className="bg-card flex h-full w-64 flex-col border-r">
             {/* Sidebar Header */}
             <div className="border-b p-4">
                 <h2 className="text-lg font-semibold">Dashboard</h2>
-                <p className="text-sm text-muted-foreground">Manage your content</p>
+                <p className="text-muted-foreground text-sm">Manage your content</p>
             </div>
 
             {/* Navigation */}
             <nav className="flex-1 space-y-1 p-4">
                 <div className="space-y-1">
                     {sidebarItems.map((item) => {
-                        const isActive = pathname === item.href ||
+                        const isActive =
+                            pathname === item.href ||
                             (item.href !== "/dashboard" && pathname.startsWith(item.href));
 
                         return (
@@ -98,7 +99,7 @@ export function DashboardSidebar() {
                 {/* Admin Section */}
                 {isAdmin && (
                     <div className="mt-6 space-y-1">
-                        <p className="px-3 text-xs font-semibold uppercase text-muted-foreground">
+                        <p className="text-muted-foreground px-3 text-xs font-semibold uppercase">
                             Admin
                         </p>
                         {adminItems.map((item) => {

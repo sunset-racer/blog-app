@@ -7,11 +7,7 @@ import { DashboardSidebar } from "@/components/dashboard-sidebar";
 import { useAuth } from "@/hooks/use-auth";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function DashboardLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();
     const { isAuthenticated, isLoading, isAuthor } = useAuth();
 
@@ -24,7 +20,7 @@ export default function DashboardLayout({
     // Show loading state while checking auth
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-background">
+            <div className="bg-background min-h-screen">
                 <Navbar />
                 <div className="flex">
                     <div className="w-64 border-r p-4">
@@ -52,14 +48,14 @@ export default function DashboardLayout({
     // Show access denied if not an author or admin
     if (!isAuthor) {
         return (
-            <div className="min-h-screen bg-background">
+            <div className="bg-background min-h-screen">
                 <Navbar />
                 <div className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
                     <h1 className="mb-4 text-3xl font-bold">Access Denied</h1>
-                    <p className="mb-6 text-muted-foreground">
+                    <p className="text-muted-foreground mb-6">
                         You need to be an Author or Admin to access the dashboard.
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                         Contact an administrator to upgrade your account.
                     </p>
                 </div>
@@ -68,13 +64,11 @@ export default function DashboardLayout({
     }
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="bg-background min-h-screen">
             <Navbar />
             <div className="flex h-[calc(100vh-64px)]">
                 <DashboardSidebar />
-                <main className="flex-1 overflow-y-auto p-8">
-                    {children}
-                </main>
+                <main className="flex-1 overflow-y-auto p-8">{children}</main>
             </div>
         </div>
     );

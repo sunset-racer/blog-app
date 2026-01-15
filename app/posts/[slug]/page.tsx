@@ -23,7 +23,7 @@ export default function PostDetailPage() {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-background">
+            <div className="bg-background min-h-screen">
                 <Navbar />
                 <main className="container mx-auto max-w-4xl px-4 py-8">
                     <Skeleton className="mb-4 h-10 w-32" />
@@ -41,12 +41,12 @@ export default function PostDetailPage() {
 
     if (error || !post) {
         return (
-            <div className="min-h-screen bg-background">
+            <div className="bg-background min-h-screen">
                 <Navbar />
                 <main className="container mx-auto max-w-4xl px-4 py-8">
                     <div className="flex min-h-[400px] flex-col items-center justify-center text-center">
                         <h1 className="mb-4 text-3xl font-bold">Post Not Found</h1>
-                        <p className="mb-6 text-muted-foreground">
+                        <p className="text-muted-foreground mb-6">
                             The post you're looking for doesn't exist or has been removed.
                         </p>
                         <Button asChild>
@@ -62,17 +62,12 @@ export default function PostDetailPage() {
     }
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="bg-background min-h-screen">
             <Navbar />
 
             <main className="container mx-auto max-w-4xl px-4 py-8">
                 {/* Back Button */}
-                <Button
-                    variant="ghost"
-                    size="sm"
-                    className="mb-6"
-                    onClick={() => router.back()}
-                >
+                <Button variant="ghost" size="sm" className="mb-6" onClick={() => router.back()}>
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back
                 </Button>
@@ -104,7 +99,7 @@ export default function PostDetailPage() {
 
             {/* Footer */}
             <footer className="mt-16 border-t">
-                <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
+                <div className="text-muted-foreground container mx-auto px-4 py-8 text-center text-sm">
                     <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
                 </div>
             </footer>

@@ -11,7 +11,11 @@ interface SearchBarProps {
     placeholder?: string;
 }
 
-export function SearchBar({ onSearch, defaultValue = "", placeholder = "Search posts..." }: SearchBarProps) {
+export function SearchBar({
+    onSearch,
+    defaultValue = "",
+    placeholder = "Search posts...",
+}: SearchBarProps) {
     const [query, setQuery] = useState(defaultValue);
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -27,13 +31,13 @@ export function SearchBar({ onSearch, defaultValue = "", placeholder = "Search p
     return (
         <form onSubmit={handleSubmit} className="relative w-full">
             <div className="relative flex items-center">
-                <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute left-3 h-4 w-4" />
                 <Input
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder={placeholder}
-                    className="w-full pl-9 pr-20"
+                    className="w-full pr-20 pl-9"
                 />
                 <div className="absolute right-1 flex gap-1">
                     {query && (
