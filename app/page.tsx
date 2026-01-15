@@ -27,7 +27,7 @@ export default function HomePage() {
         page,
         limit: 9,
         search: search || undefined,
-        tag: selectedTag,
+        tagSlug: selectedTag,
         sortBy: "publishedAt",
         sortOrder: "desc",
         status: "PUBLISHED",

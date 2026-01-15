@@ -111,17 +111,3 @@ export function useDeletePost() {
         },
     });
 }
-
-// Increment post views (optimistic update)
-export function useIncrementViews() {
-    const queryClient = useQueryClient();
-
-    return useMutation({
-        mutationFn: async (slug: string) => {
-            return await api.post(`/api/posts/${slug}/view`);
-        },
-        onSuccess: (_, slug) => {
-            queryClient.invalidateQueries({ queryKey: postKeys.detail(slug) });
-        },
-    });
-}

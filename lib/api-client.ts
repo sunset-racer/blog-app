@@ -98,8 +98,12 @@ export const api = {
             body: data ? JSON.stringify(data) : undefined,
         }),
 
-    delete: <T>(endpoint: string, options?: RequestOptions) =>
-        request<T>(endpoint, { ...options, method: "DELETE" }),
+    delete: <T>(endpoint: string, data?: any, options?: RequestOptions) =>
+        request<T>(endpoint, {
+            ...options,
+            method: "DELETE",
+            body: data ? JSON.stringify(data) : undefined,
+        }),
 
     // Special handler for FormData (e.g., image uploads)
     postFormData: <T>(endpoint: string, formData: FormData, options?: RequestOptions) => {

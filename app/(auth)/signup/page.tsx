@@ -11,7 +11,7 @@ import { signUp, signOut } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Loader2, Mail, Lock, User, ArrowRight, Check } from "lucide-react";
 
 const signupSchema = z
     .object({
@@ -35,9 +35,17 @@ export default function SignupPage() {
         register,
         handleSubmit,
         formState: { errors },
+        watch,
     } = useForm<SignupFormData>({
         resolver: zodResolver(signupSchema),
     });
+
+    const password = watch("password", "");
+
+    // Password strength indicators
+    const hasMinLength = password.length >= 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
 
     const onSubmit = async (data: SignupFormData) => {
         setIsLoading(true);
@@ -68,74 +76,145 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-background p-4">
-            <Card className="w-full max-w-md">
-                <CardHeader className="space-y-2">
-                    <CardTitle className="text-2xl font-bold tracking-tight">Create Account</CardTitle>
-                    <CardDescription>Enter your details to create a new account</CardDescription>
-                </CardHeader>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <CardContent className="space-y-4 pt-0">
-                        <div className="space-y-2">
-                            <Label htmlFor="name">Name</Label>
-                            <Input
-                                id="name"
-                                type="text"
-                                placeholder="John Doe"
-                                disabled={isLoading}
-                                {...register("name")}
-                            />
-                            {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
+        <div className="w-full max-w-sm space-y-6">
+            {/* Header */}
+            <div className="space-y-2 text-center">
+                <h1 className="text-2xl font-bold tracking-tight">Create an account</h1>
+                <p className="text-sm text-muted-foreground">
+                    Join TechBlog and start sharing your knowledge
+                </p>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <div className="space-y-2">
+                    <Label htmlFor="name">Full Name</Label>
+                    <div className="relative">
+                        <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                            id="name"
+                            type="text"
+                            placeholder="John Doe"
+                            className="pl-10"
+                            disabled={isLoading}
+                            {...register("name")}
+                        />
+                    </div>
+                    {errors.name && (
+                        <p className="text-sm text-destructive">{errors.name.message}</p>
+                    )}
+                </div>
+
+                <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                            id="email"
+                            type="email"
+                            placeholder="you@example.com"
+                            className="pl-10"
+                            disabled={isLoading}
+                            {...register("email")}
+                        />
+                    </div>
+                    {errors.email && (
+                        <p className="text-sm text-destructive">{errors.email.message}</p>
+                    )}
+                </div>
+
+                <div className="space-y-2">
+                    <Label htmlFor="password">Password</Label>
+                    <div className="relative">
+                        <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                            id="password"
+                            type="password"
+                            placeholder="Create a password"
+                            className="pl-10"
+                            disabled={isLoading}
+                            {...register("password")}
+                        />
+                    </div>
+                    {errors.password && (
+                        <p className="text-sm text-destructive">{errors.password.message}</p>
+                    )}
+                    {/* Password strength indicators */}
+                    {password && (
+                        <div className="space-y-1.5 pt-1">
+                            <div className="flex items-center gap-2 text-xs">
+                                <Check className={`h-3 w-3 ${hasMinLength ? "text-green-500" : "text-muted-foreground"}`} />
+                                <span className={hasMinLength ? "text-green-500" : "text-muted-foreground"}>
+                                    At least 8 characters
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs">
+                                <Check className={`h-3 w-3 ${hasUppercase ? "text-green-500" : "text-muted-foreground"}`} />
+                                <span className={hasUppercase ? "text-green-500" : "text-muted-foreground"}>
+                                    One uppercase letter
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs">
+                                <Check className={`h-3 w-3 ${hasNumber ? "text-green-500" : "text-muted-foreground"}`} />
+                                <span className={hasNumber ? "text-green-500" : "text-muted-foreground"}>
+                                    One number
+                                </span>
+                            </div>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="you@example.com"
-                                disabled={isLoading}
-                                {...register("email")}
-                            />
-                            {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <Input
-                                id="password"
-                                type="password"
-                                placeholder="Create a password"
-                                disabled={isLoading}
-                                {...register("password")}
-                            />
-                            {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="confirmPassword">Confirm Password</Label>
-                            <Input
-                                id="confirmPassword"
-                                type="password"
-                                placeholder="Confirm your password"
-                                disabled={isLoading}
-                                {...register("confirmPassword")}
-                            />
-                            {errors.confirmPassword && (
-                                <p className="text-sm text-destructive">{errors.confirmPassword.message}</p>
-                            )}
-                        </div>
-                    </CardContent>
-                    <CardFooter className="flex flex-col space-y-4">
-                        <Button type="submit" className="w-full" disabled={isLoading}>
-                            {isLoading ? "Creating account..." : "Create Account"}
-                        </Button>
-                        <p className="text-center text-sm text-muted-foreground">
-                            Already have an account?{" "}
-                            <Link href="/login" className="font-medium text-primary hover:underline">
-                                Sign In
-                            </Link>
-                        </p>
-                    </CardFooter>
-                </form>
-            </Card>
+                    )}
+                </div>
+
+                <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <div className="relative">
+                        <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                            id="confirmPassword"
+                            type="password"
+                            placeholder="Confirm your password"
+                            className="pl-10"
+                            disabled={isLoading}
+                            {...register("confirmPassword")}
+                        />
+                    </div>
+                    {errors.confirmPassword && (
+                        <p className="text-sm text-destructive">{errors.confirmPassword.message}</p>
+                    )}
+                </div>
+
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? (
+                        <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Creating account...
+                        </>
+                    ) : (
+                        <>
+                            Create Account
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                        </>
+                    )}
+                </Button>
+            </form>
+
+            {/* Divider */}
+            <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">
+                        Already have an account?
+                    </span>
+                </div>
+            </div>
+
+            {/* Sign in link */}
+            <Button variant="outline" className="w-full" asChild>
+                <Link href="/login">
+                    Sign in instead
+                </Link>
+            </Button>
         </div>
     );
 }

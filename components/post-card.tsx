@@ -13,7 +13,7 @@ interface PostCardProps {
 
 export function PostCard({ post, featured = false }: PostCardProps) {
     const excerpt = post.excerpt || post.content.substring(0, 150) + "...";
-    const commentCount = post._count?.comments || 0;
+    const commentCount = post.commentsCount || 0;
 
     return (
         <Link href={`/posts/${post.slug}`}>

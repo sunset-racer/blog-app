@@ -16,7 +16,7 @@ export function RelatedPosts({ currentPost }: RelatedPostsProps) {
 
     // Fetch related posts by tag
     const { data, isLoading } = usePosts({
-        tag: primaryTag,
+        tagSlug: primaryTag,
         limit: 3,
         status: "PUBLISHED",
         sortBy: "publishedAt",

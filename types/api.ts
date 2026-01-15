@@ -28,14 +28,14 @@ export interface Post {
     coverImage?: string | null;
     status: "DRAFT" | "PENDING_APPROVAL" | "PUBLISHED" | "REJECTED";
     views: number;
+    isFeatured?: boolean;
     createdAt: string;
     updatedAt: string;
     publishedAt?: string | null;
     author: Author;
     tags: Tag[];
-    _count?: {
-        comments: number;
-    };
+    commentsCount?: number;
+    comments?: Comment[];
 }
 
 export interface PostsResponse {
@@ -45,6 +45,7 @@ export interface PostsResponse {
         page: number;
         limit: number;
         totalPages: number;
+        hasMore?: boolean;
     };
 }
 
@@ -82,10 +83,11 @@ export interface PostFilters {
     page?: number;
     limit?: number;
     search?: string;
-    tag?: string;
+    tagSlug?: string;
     authorId?: string;
     status?: string;
-    sortBy?: "createdAt" | "updatedAt" | "views" | "publishedAt";
+    isFeatured?: boolean;
+    sortBy?: "createdAt" | "updatedAt" | "viewCount" | "publishedAt" | "title";
     sortOrder?: "asc" | "desc";
 }
 

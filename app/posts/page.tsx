@@ -13,7 +13,7 @@ export default function PostsListingPage() {
     const [search, setSearch] = useState("");
     const [selectedTag, setSelectedTag] = useState<string | undefined>();
     const [currentSort, setCurrentSort] = useState("latest");
-    const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "views" | "publishedAt">("publishedAt");
+    const [sortBy, setSortBy] = useState<"createdAt" | "updatedAt" | "viewCount" | "publishedAt">("publishedAt");
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
     // Fetch posts with filters
@@ -21,7 +21,7 @@ export default function PostsListingPage() {
         page,
         limit: 12,
         search: search || undefined,
-        tag: selectedTag,
+        tagSlug: selectedTag,
         sortBy,
         sortOrder,
         status: "PUBLISHED",

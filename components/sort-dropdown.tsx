@@ -14,14 +14,14 @@ import { ArrowUpDown, Check } from "lucide-react";
 export type SortOption = {
     label: string;
     value: string;
-    sortBy: "createdAt" | "updatedAt" | "views" | "publishedAt";
+    sortBy: "createdAt" | "updatedAt" | "viewCount" | "publishedAt";
     sortOrder: "asc" | "desc";
 };
 
 const sortOptions: SortOption[] = [
     { label: "Latest", value: "latest", sortBy: "publishedAt", sortOrder: "desc" },
     { label: "Oldest", value: "oldest", sortBy: "publishedAt", sortOrder: "asc" },
-    { label: "Most Viewed", value: "most-viewed", sortBy: "views", sortOrder: "desc" },
+    { label: "Most Viewed", value: "most-viewed", sortBy: "viewCount", sortOrder: "desc" },
     { label: "Recently Updated", value: "recently-updated", sortBy: "updatedAt", sortOrder: "desc" },
 ];
 
