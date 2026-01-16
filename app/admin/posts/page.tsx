@@ -21,7 +21,8 @@ import { AdminPostsTable } from "@/components/admin-posts-table";
 import { AdminPostsFilters } from "@/components/admin-posts-filters";
 import { usePosts, useDeletePost } from "@/hooks/use-posts";
 import { toast } from "sonner";
-import { ChevronDown, Trash2, Loader2 } from "lucide-react";
+import Link from "next/link";
+import { ChevronDown, Trash2, Loader2, ArrowLeft } from "lucide-react";
 
 export default function AdminPostsPage() {
     const [page, setPage] = useState(1);
@@ -83,11 +84,25 @@ export default function AdminPostsPage() {
         <div className="space-y-6">
             {/* Page Header */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                    <h1 className="text-3xl font-bold">All Posts</h1>
-                    <p className="text-muted-foreground">
-                        Manage all blog posts across all authors
-                    </p>
+                <div className="flex items-center gap-4">
+                    <Button variant="ghost" size="icon" asChild className="shrink-0">
+                        <Link href="/admin">
+                            <ArrowLeft className="h-4 w-4" />
+                        </Link>
+                    </Button>
+                    <div>
+                        <div className="flex items-center gap-2">
+                            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">All Posts</h1>
+                            {data?.pagination.total !== undefined && (
+                                <span className="text-muted-foreground text-sm">
+                                    ({data.pagination.total})
+                                </span>
+                            )}
+                        </div>
+                        <p className="text-muted-foreground">
+                            Manage all blog posts across all authors
+                        </p>
+                    </div>
                 </div>
 
                 {/* Bulk Actions */}

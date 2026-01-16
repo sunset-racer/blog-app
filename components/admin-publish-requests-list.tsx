@@ -16,7 +16,7 @@ export function AdminPublishRequestsList({ filter = "all" }: AdminPublishRequest
         return (
             <div className="space-y-4">
                 {Array.from({ length: 3 }).map((_, i) => (
-                    <Skeleton key={i} className="h-48 w-full" />
+                    <Skeleton key={i} className="h-48 w-full rounded-lg" />
                 ))}
             </div>
         );

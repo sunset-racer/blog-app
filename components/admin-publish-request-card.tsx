@@ -165,8 +165,8 @@ export function AdminPublishRequestCard({ request, onUpdated }: AdminPublishRequ
                     )}
                 </CardContent>
 
-                <CardFooter className="gap-2">
-                    <Button variant="outline" size="sm" asChild>
+                <CardFooter className="flex-col gap-2 sm:flex-row">
+                    <Button variant="outline" size="sm" asChild className="w-full sm:w-auto">
                         <Link href={`/dashboard/posts/${request.post.id}/edit`} target="_blank">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             View Post
@@ -178,7 +178,7 @@ export function AdminPublishRequestCard({ request, onUpdated }: AdminPublishRequ
                             <Button
                                 size="sm"
                                 onClick={() => setApproveDialogOpen(true)}
-                                className="bg-green-600 hover:bg-green-700"
+                                className="w-full bg-green-600 hover:bg-green-700 sm:w-auto"
                             >
                                 <Check className="mr-2 h-4 w-4" />
                                 Approve
@@ -187,6 +187,7 @@ export function AdminPublishRequestCard({ request, onUpdated }: AdminPublishRequ
                                 variant="destructive"
                                 size="sm"
                                 onClick={() => setRejectDialogOpen(true)}
+                                className="w-full sm:w-auto"
                             >
                                 <X className="mr-2 h-4 w-4" />
                                 Reject

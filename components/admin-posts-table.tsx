@@ -110,7 +110,7 @@ export function AdminPostsTable({
             cell: ({ row }) => {
                 const post = row.original;
                 return (
-                    <div className="flex flex-col">
+                    <div className="flex min-w-[200px] max-w-[300px] flex-col">
                         <span className="line-clamp-1 font-medium">{post.title}</span>
                         <span className="text-muted-foreground line-clamp-1 text-sm">
                             {post.excerpt || post.content.substring(0, 60) + "..."}
@@ -217,7 +217,7 @@ export function AdminPostsTable({
         return (
             <div className="space-y-4">
                 {Array.from({ length: 5 }).map((_, i) => (
-                    <Skeleton key={i} className="h-16 w-full" />
+                    <Skeleton key={i} className="h-16 w-full rounded-lg" />
                 ))}
             </div>
         );
@@ -239,13 +239,13 @@ export function AdminPostsTable({
 
     return (
         <>
-            <div className="rounded-lg border">
+            <div className="overflow-x-auto rounded-lg border">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id} className="bg-muted/50">
                                 {headerGroup.headers.map((header) => (
-                                    <TableHead key={header.id}>
+                                    <TableHead key={header.id} className="whitespace-nowrap">
                                         {header.isPlaceholder
                                             ? null
                                             : flexRender(
