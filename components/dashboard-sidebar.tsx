@@ -9,7 +9,6 @@ import {
     PenSquare,
     Clock,
     MessageSquare,
-    Settings,
     Shield,
     LayoutDashboard,
 } from "lucide-react";
@@ -63,7 +62,7 @@ export function DashboardSidebar() {
     const { isAdmin } = useAuth();
 
     return (
-        <aside className="bg-card flex h-full w-64 flex-col border-r">
+        <aside className="bg-card flex w-64 flex-col border-r">
             {/* Sidebar Header */}
             <div className="border-b p-4">
                 <h2 className="text-lg font-semibold">Dashboard</h2>
@@ -74,9 +73,7 @@ export function DashboardSidebar() {
             <nav className="flex-1 space-y-1 p-4">
                 <div className="space-y-1">
                     {sidebarItems.map((item) => {
-                        const isActive =
-                            pathname === item.href ||
-                            (item.href !== "/dashboard" && pathname.startsWith(item.href));
+                        const isActive = pathname === item.href;
 
                         return (
                             <Link

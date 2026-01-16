@@ -64,11 +64,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     }
 
     return (
-        <div className="bg-background min-h-screen">
+        <div className="bg-background flex min-h-screen flex-col">
             <Navbar />
-            <div className="flex h-[calc(100vh-64px)]">
+            <div className="flex flex-1">
                 <DashboardSidebar />
-                <main className="flex-1 overflow-y-auto p-8">{children}</main>
+                <main className="flex-1 p-8">{children}</main>
             </div>
         </div>
     );
