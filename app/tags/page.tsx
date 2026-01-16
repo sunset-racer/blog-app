@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tag as TagIcon } from "lucide-react";
@@ -77,12 +78,7 @@ export default function TagsPage() {
                 )}
             </main>
 
-            {/* Footer */}
-            <footer className="mt-16 border-t">
-                <div className="text-muted-foreground container mx-auto px-4 py-8 text-center text-sm">
-                    <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

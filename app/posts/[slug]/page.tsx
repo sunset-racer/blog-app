@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import { PostHeader } from "@/components/post-header";
 import { MarkdownContent } from "@/components/markdown-content";
 import { RelatedPosts } from "@/components/related-posts";
@@ -97,12 +98,7 @@ export default function PostDetailPage() {
                 <CommentsSection postId={post.id} />
             </main>
 
-            {/* Footer */}
-            <footer className="mt-16 border-t">
-                <div className="text-muted-foreground container mx-auto px-4 py-8 text-center text-sm">
-                    <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import { AuthorHeader } from "@/components/author-header";
 import { SortDropdown, type SortOption } from "@/components/sort-dropdown";
 import { PostsGrid } from "@/components/posts-grid";
@@ -130,12 +131,7 @@ export default function AuthorPage() {
                 />
             </main>
 
-            {/* Footer */}
-            <footer className="mt-16 border-t">
-                <div className="text-muted-foreground container mx-auto px-4 py-8 text-center text-sm">
-                    <p>© 2025 TechBlog. Built with Next.js and Better-Auth.</p>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

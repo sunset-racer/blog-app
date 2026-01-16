@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 import { FeaturedPostsCarousel } from "@/components/featured-posts-carousel";
 import { RecentPostsGrid } from "@/components/recent-posts-grid";
 import { SearchBar } from "@/components/search-bar";
@@ -228,85 +229,7 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="bg-background border-t">
-                <div className="container mx-auto px-4 py-12">
-                    <div className="grid gap-8 md:grid-cols-4">
-                        {/* Brand */}
-                        <div className="md:col-span-2">
-                            <Link href="/" className="flex items-center gap-2 text-xl font-bold">
-                                <BookOpen className="h-6 w-6" />
-                                <span>TechBlog</span>
-                            </Link>
-                            <p className="text-muted-foreground mt-4 max-w-md text-sm">
-                                A platform for developers to share knowledge, learn from others, and
-                                stay up-to-date with the latest in technology.
-                            </p>
-                        </div>
-
-                        {/* Quick Links */}
-                        <div>
-                            <h3 className="mb-4 font-semibold">Quick Links</h3>
-                            <ul className="text-muted-foreground space-y-2 text-sm">
-                                <li>
-                                    <Link
-                                        href="/posts"
-                                        className="hover:text-foreground transition-colors"
-                                    >
-                                        All Posts
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="/tags"
-                                        className="hover:text-foreground transition-colors"
-                                    >
-                                        Tags
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="/about"
-                                        className="hover:text-foreground transition-colors"
-                                    >
-                                        About
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Legal */}
-                        <div>
-                            <h3 className="mb-4 font-semibold">Legal</h3>
-                            <ul className="text-muted-foreground space-y-2 text-sm">
-                                <li>
-                                    <Link
-                                        href="/privacy"
-                                        className="hover:text-foreground transition-colors"
-                                    >
-                                        Privacy Policy
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="/terms"
-                                        className="hover:text-foreground transition-colors"
-                                    >
-                                        Terms of Service
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className="text-muted-foreground mt-12 border-t pt-8 text-center text-sm">
-                        <p>
-                            &copy; {new Date().getFullYear()} TechBlog. Built with Next.js and
-                            Better-Auth.
-                        </p>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }
