@@ -1,10 +1,43 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 
 interface MarkdownContentProps {
     content: string;
+}
+
+function MarkdownImage({ src, alt }: { src?: string | Blob; alt?: string }) {
+    const [blobUrl, setBlobUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (src instanceof Blob) {
+            const url = URL.createObjectURL(src);
+            setBlobUrl(url);
+            return () => {
+                URL.revokeObjectURL(url);
+            };
+        }
+
+        setBlobUrl(null);
+        return undefined;
+    }, [src]);
+
+    const imageSrc = typeof src === "string" ? src : blobUrl;
+    if (!imageSrc) return null;
+
+    return (
+        <Image
+            src={imageSrc}
+            alt={alt || ""}
+            width={1200}
+            height={800}
+            sizes="100vw"
+            className="my-6 h-auto w-full rounded-lg"
+            unoptimized
+        />
+    );
 }
 
 export function MarkdownContent({ content }: MarkdownContentProps) {
@@ -75,20 +108,7 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                         </blockquote>
                     ),
                     // Customize images
-                    img: ({ src, alt }) => {
-                        if (!src) return null;
-                        return (
-                            <Image
-                                src={src}
-                                alt={alt || ""}
-                                width={1200}
-                                height={800}
-                                sizes="100vw"
-                                className="my-6 h-auto w-full rounded-lg"
-                                unoptimized
-                            />
-                        );
-                    },
+                    img: ({ src, alt }) => <MarkdownImage src={src} alt={alt} />,
                     // Customize horizontal rules
                     hr: () => <hr className="border-border my-8" />,
                 }}
