@@ -2,7 +2,7 @@
  * API Client - Type-safe fetch wrapper for backend API calls
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export class APIError extends Error {
     constructor(

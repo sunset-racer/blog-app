@@ -31,6 +31,8 @@ export function useUsers(filters: UserFilters = {}) {
             const response = await api.get<UsersResponse>(url);
             return response;
         },
+        staleTime: 5 * 60 * 1000, // admin lists change infrequently
+        gcTime: 20 * 60 * 1000,
     });
 }
 

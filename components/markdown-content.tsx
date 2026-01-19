@@ -1,6 +1,7 @@
 "use client";
 
 import ReactMarkdown from "react-markdown";
+import Image from "next/image";
 
 interface MarkdownContentProps {
     content: string;
@@ -74,7 +75,20 @@ export function MarkdownContent({ content }: MarkdownContentProps) {
                         </blockquote>
                     ),
                     // Customize images
-                    img: ({ src, alt }) => <img src={src} alt={alt} className="my-6 rounded-lg" />,
+                    img: ({ src, alt }) => {
+                        if (!src) return null;
+                        return (
+                            <Image
+                                src={src}
+                                alt={alt || ""}
+                                width={1200}
+                                height={800}
+                                sizes="100vw"
+                                className="my-6 h-auto w-full rounded-lg"
+                                unoptimized
+                            />
+                        );
+                    },
                     // Customize horizontal rules
                     hr: () => <hr className="border-border my-8" />,
                 }}

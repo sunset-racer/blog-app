@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { api } from "@/lib/api-client";
+import { api, API_BASE_URL } from "@/lib/api-client";
 
 export interface UploadResponse {
     url: string;
@@ -17,7 +17,7 @@ export function useUploadImage() {
             const formData = new FormData();
             formData.append("file", file);
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/upload/image`, {
+            const response = await fetch(`${API_BASE_URL}/api/upload/image`, {
                 method: "POST",
                 body: formData,
                 credentials: "include",

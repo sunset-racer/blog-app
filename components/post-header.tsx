@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Eye, Clock } from "lucide-react";
@@ -19,10 +20,13 @@ export function PostHeader({ post }: PostHeaderProps) {
             {/* Cover Image */}
             {post.coverImage && (
                 <div className="bg-muted relative aspect-video w-full overflow-hidden rounded-lg">
-                    <img
+                    <Image
                         src={post.coverImage}
                         alt={post.title}
+                        fill
+                        sizes="100vw"
                         className="h-full w-full object-cover"
+                        unoptimized
                     />
                 </div>
             )}

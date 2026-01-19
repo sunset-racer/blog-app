@@ -21,6 +21,8 @@ export function useTags() {
             const response = await api.get<TagsResponse>("/api/tags");
             return response;
         },
+        staleTime: 30 * 60 * 1000, // tags are mostly static
+        gcTime: 60 * 60 * 1000,
     });
 }
 
@@ -33,6 +35,8 @@ export function useTag(slug: string) {
             return response;
         },
         enabled: !!slug,
+        staleTime: 30 * 60 * 1000,
+        gcTime: 60 * 60 * 1000,
     });
 }
 

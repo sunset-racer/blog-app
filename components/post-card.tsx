@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -24,10 +25,13 @@ export function PostCard({ post, featured = false }: PostCardProps) {
             >
                 {post.coverImage && (
                     <div className="bg-muted relative aspect-video w-full overflow-hidden rounded-t-lg">
-                        <img
+                        <Image
                             src={post.coverImage}
                             alt={post.title}
+                            fill
+                            sizes="(min-width: 1024px) 50vw, 100vw"
                             className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                            unoptimized
                         />
                     </div>
                 )}

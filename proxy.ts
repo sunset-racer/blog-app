@@ -3,6 +3,8 @@ import type { NextRequest } from "next/server";
 
 // Define public routes that don't require authentication
 const publicRoutes = ["/", "/login", "/signup", "/posts", "/tags"];
+// Keep this aligned with Better-Auth cookie naming; override via env if needed.
+const sessionCookieName = process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME || "better-auth.session_token";
 
 // Helper to check if a path matches a pattern
 function matchesRoute(pathname: string, routes: string[]): boolean {
@@ -13,7 +15,7 @@ export function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
     // Get session cookie (optimistic check)
-    const sessionToken = request.cookies.get("better-auth.session_token");
+    const sessionToken = request.cookies.get(sessionCookieName);
     const isAuthenticated = !!sessionToken;
 
     // If user is authenticated and trying to access login/signup, redirect to home
@@ -30,7 +32,7 @@ export function proxy(request: NextRequest) {
     if (pathname.startsWith("/dashboard") || pathname.startsWith("/admin")) {
         if (!isAuthenticated) {
             const loginUrl = new URL("/login", request.url);
-            loginUrl.searchParams.set("redirect", pathname);
+            loginUrl.searchParams.set("redirect", `${pathname}${request.nextUrl.search}`);
             return NextResponse.redirect(loginUrl);
         }
     }

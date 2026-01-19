@@ -24,6 +24,8 @@ export function usePosts(filters: PostFilters = {}) {
             });
             return response;
         },
+        staleTime: 2 * 60 * 1000, // 2 minutes for feed-like data
+        gcTime: 10 * 60 * 1000, // keep cached lists for quick back/forward
     });
 }
 
@@ -36,6 +38,8 @@ export function usePost(slug: string) {
             return response;
         },
         enabled: !!slug,
+        staleTime: 5 * 60 * 1000, // post detail changes less frequently
+        gcTime: 20 * 60 * 1000,
     });
 }
 
@@ -48,6 +52,8 @@ export function usePostById(id: string) {
             return response;
         },
         enabled: !!id,
+        staleTime: 60 * 1000,
+        gcTime: 10 * 60 * 1000,
     });
 }
 
