@@ -73,8 +73,8 @@ The Blog App is a comprehensive content management system that enables authors t
 - **Sonner** - Toast notifications
 
 ### Data & State
-- **@tanstack/react-query 5.90.20** - Server state management
-- **@tanstack/react-table 8.21.3** - Table components
+- **Tanstack/react-query 5.90.20** - Server state management
+- **Tanstack/react-table 8.21.3** - Table components
 - **React Hook Form 7.71.1** - Form state management
 
 ### Validation & Auth
